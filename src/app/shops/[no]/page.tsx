@@ -1,8 +1,8 @@
-// src/app/shops/[no]/page.tsx
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { fetchSheetRowsRaw } from "@/lib/sheets";
 import {
-  rowsToShopObjects,
   getShopNo,
   buildOpenDays,
   isShopOpenAt,
@@ -10,18 +10,55 @@ import {
   ShopRecord,
 } from "@/lib/shops";
 
-export default async function ShopDetailPage({ params }: { params: { no: string } }) {
-  const noParam = decodeURIComponent(params.no).trim();
+function pick(shop: ShopRecord, key: string) {
+  return String(shop[key] ?? "").trim();
+}
 
-  const rows = await fetchSheetRowsRaw();
-  const { items } = rowsToShopObjects(rows);
+export default function ShopDetailPage({ params }: { params: { no: string } }) {
+  const [shop, setShop] = useState<ShopRecord | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [noParam, setNoParam] = useState("");
+  const [now, setNow] = useState(() => new Date());
 
-  const shop = items.find((x) => getShopNo(x) === noParam);
+  useEffect(() => {
+    const fetchData = async () => {
+      const resolvedParams = await Promise.resolve(params);
+      const no = decodeURIComponent(resolvedParams.no).trim();
+      setNoParam(no);
+
+      try {
+        const response = await fetch('/api/debug/shops');
+        const data = await response.json();
+        const foundShop = data.items.find((x: ShopRecord) => getShopNo(x) === no);
+        
+        setShop(foundShop || null);
+      } catch (error) {
+        console.error('データの取得に失敗しました:', error);
+        setShop(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params]);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(new Date()), 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const openNow = useMemo(() => shop ? isShopOpenAt(shop, now) : false, [shop, now]);
+  const openDays = useMemo(() => shop ? buildOpenDays(shop) : [], [shop]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!shop) {
     return (
-      <main className="page">
-        <h1 className="page__title">店舗が見つかりません</h1>
+      <main className="single">
+        <h1 className="single-ttl">店舗が見つかりません</h1>
         <p>No: {noParam}</p>
         <p>
           <Link href="/">一覧へ戻る</Link>
@@ -29,32 +66,6 @@ export default async function ShopDetailPage({ params }: { params: { no: string 
       </main>
     );
   }
-
-  return <ShopDetailClient shop={shop} />;
-}
-
-/* ============================
- * Client（営業中ラベルを更新する）
- * ============================ */
-
-function pick(shop: ShopRecord, key: string) {
-  return String(shop[key] ?? "").trim();
-}
-
-function ShopDetailClient({ shop }: { shop: ShopRecord }) {
-  "use client";
-
-  const { useEffect, useMemo, useState } = require("react") as typeof import("react");
-
-  const [now, setNow] = useState(() => new Date());
-
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(new Date()), 60_000);
-    return () => window.clearInterval(id);
-  }, []);
-
-  const openNow = useMemo(() => isShopOpenAt(shop, now), [shop, now]);
-  const openDays = useMemo(() => buildOpenDays(shop), [shop]);
 
   // 主要カラム
   const no = getShopNo(shop);
@@ -80,12 +91,12 @@ function ShopDetailClient({ shop }: { shop: ShopRecord }) {
   const checkedAt = pick(shop, "最終確認日");
 
   return (
-    <main className="page">
+    <main className="index">
       <p style={{ marginBottom: 12 }}>
         <Link href="/">← 一覧へ戻る</Link>
       </p>
 
-      <h1 className="page__title">
+      <h1 className="index-title">
         {name || "(店名なし)"} {no ? <span style={{ fontSize: 14 }}>#{no}</span> : null}
       </h1>
 

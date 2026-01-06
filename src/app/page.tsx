@@ -2,6 +2,7 @@
 import { fetchSheetRowsRaw } from "@/lib/sheets";
 import { rowsToShopObjects } from "@/lib/shops";
 import ShopListClient from "@/app/components/ShopListClient";
+import Link from "next/link";
 
 export default async function Home() {
   const rows = await fetchSheetRowsRaw();
@@ -12,10 +13,11 @@ export default async function Home() {
 
   return (
     <main className="page">
-      <h1 className="page__title">お店一覧</h1>
+      <h1 className="page-title">お店一覧</h1>
 
       {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
       <ShopListClient items={topItems} />
+      <Link href="/about">このサイトについて</Link>
     </main>
   );
 }
