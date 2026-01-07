@@ -41,10 +41,12 @@ body {
 @media screen and (min-width: 769px) {
   #footer {
     background-color: #3F4345;
+    padding: 40px;
   }
   #footer .footer-copy {
     color: white;
     font-size: 12px;
+    text-align: center;
   }
 }
 
