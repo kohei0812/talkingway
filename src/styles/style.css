@@ -288,9 +288,9 @@ main {
     margin-top: 10px;
   }
   #front #shop .shop-card__name {
-    font-size: 16px;
+    font-size: 20px;
     color: #333;
-    font-weight: 500;
+    font-weight: bold;
   }
   #front #shop .shop-card__locate {
     margin-top: 10px;
