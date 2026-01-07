@@ -45,6 +45,20 @@ body {
     }
 }
 
+/*----------------------------*/
+/*footer */
+/*----------------------------*/
+#footer {
+    @media screen and (min-width:769px) {
+        background-color: #3F4345;
+
+        .footer-copy {
+            color: white;
+            font-size: 12px;
+        }
+    }
+}
+
 main {
     background-color: #D1C9D0;
 }
@@ -287,13 +301,16 @@ main {
                     background-repeat: no-repeat;
                     background-position: center;
                     padding: 22px;
-                    position:relative;
-                    *{
-                        font-size:14px;
+                    position: relative;
+
+                    * {
+                        font-size: 14px;
                     }
-                    img{
+
+                    img {
                         flex-shrink: 0;
                     }
+
                     &__status {}
 
                     &__openLabel {
@@ -411,7 +428,7 @@ main {
                         }
 
                         span {
-                            font-size:12px;
+                            font-size: 12px;
                             margin-right: 5px;
                             background-color: #333;
                             color: white;
@@ -441,67 +458,76 @@ main {
 
                         img {
                             width: 10px;
-                            margin-left:2px;
+                            margin-left: 2px;
                         }
-                        span{
-                            background-color:#328ACA;
+
+                        span {
+                            background-color: #328ACA;
                             flex-shrink: 0;
                             width: 16px;
                             height: 16px;
-                            display:flex;
+                            display: flex;
                             align-items: center;
                             justify-content: center;
                             color: white;
-                            font-size:12px;
-                            border-radius:50% ;
-                            padding-bottom:1px;
-                            &.orange{
-                                background-color:#F8983E;
+                            font-size: 12px;
+                            border-radius: 50%;
+                            padding-bottom: 1px;
+
+                            &.orange {
+                                background-color: #F8983E;
                             }
                         }
                     }
-                    &__time{
-                        margin-top:10px;
-                        display:flex;
+
+                    &__time {
+                        margin-top: 10px;
+                        display: flex;
                         align-items: center;
                         gap: 5px;
                         color: #333;
-                        img{
+
+                        img {
                             width: 10px;
                         }
-                        span{
-                            border-radius:7.5px ;
-                            background-color:#333;
+
+                        span {
+                            border-radius: 7.5px;
+                            background-color: #333;
                             padding: 2px 7px;
                             color: white;
-                            font-size:12px;
-                            display:flex;
+                            font-size: 12px;
+                            display: flex;
                             align-items: center;
                             justify-content: center;
                         }
                     }
-                    &__reserve{
-                        margin-top:10px;
-                        display:flex;
+
+                    &__reserve {
+                        margin-top: 10px;
+                        display: flex;
                         align-items: center;
                         gap: 5px;
-                        span{
+
+                        span {
                             border-radius: 7.5px;
-                            background-color:#333;
+                            background-color: #333;
                             padding: 2px 7px;
                             color: white;
-                            font-size:12px;
+                            font-size: 12px;
                         }
                     }
-                    &__desc{
-                        margin-top:12px;
+
+                    &__desc {
+                        margin-top: 12px;
                         color: #333;
                         line-height: 1.6;
                     }
-                    &__check{
-                        font-size:12px;
+
+                    &__check {
+                        font-size: 12px;
                         color: #7F7F7F;
-                        position:absolute;
+                        position: absolute;
                         bottom: 25px;
                         right: 25px;
                     }

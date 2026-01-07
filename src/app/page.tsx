@@ -3,6 +3,7 @@ import { fetchSheetRowsRaw } from "@/lib/sheets";
 import { rowsToShopObjects } from "@/lib/shops";
 import ShopListClient from "@/app/components/ShopListClient";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Link from "next/link";
 
 export default async function Home() {
@@ -27,6 +28,7 @@ export default async function Home() {
         {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
         <ShopListClient items={topItems} />
         <Link href="/about">このサイトについて</Link>
+        <Footer/>
       </main>
     </>
   );
