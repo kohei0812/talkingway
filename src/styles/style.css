@@ -267,7 +267,8 @@ main {
   }
   #front #shop .shop-card img {
     flex-shrink: 0;
-    width: 20px;
+    width: 15px;
+    height: auto;
   }
   #front #shop .shop-card__openLabel {
     width: 69px;
