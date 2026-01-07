@@ -41,8 +41,8 @@ export async function GET() {
   const servers = uniqSorted(items.map((x) => (x["サーバー"] ?? "") as string));
   const races = uniqSorted(items.map((x) => (x["種族・性別"] ?? "") as string));
 
-  const dayKeys = ["月", "火", "水", "木", "金", "土", "日", "不定期"];
-  const days = uniqSorted(dayKeys.filter((k) => items.some((x) => (x[k] ?? "").toUpperCase() === "TRUE")));
+  const dayKeys = ["月", "火", "水", "木", "金", "土", "日"];
+  const days = dayKeys.filter((k) => items.some((x) => (x[k] ?? "").toUpperCase() === "TRUE"));
 
   return NextResponse.json({
     total: items.length,

@@ -5,42 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 type Shop = Record<string, string>;
 
-function uniqSorted(values: string[]) {
-  return Array.from(
-    new Set(values.map((v) => (v ?? "").trim()).filter((v) => v !== "" && v !== "-" && v !== "なし"))
-  ).sort((a, b) => a.localeCompare(b, "ja"));
-}
-
 const dayKeys = ["月", "火", "水", "木", "金", "土", "日", "不定期"] as const;
-
-/** DC: 単一値だけを option に採用（複数値/非公開/空は除外） */
-function extractSingleDcOptionsFromItems(items: Shop[]) {
-  const out = new Set<string>();
-
-  for (const x of items) {
-    const raw = (x["dc"] ?? x["DC"] ?? "") as string;
-
-    const normalized = (raw ?? "")
-      .replace(/\r\n/g, "\n")
-      .replace(/[\n\r\t]/g, " ")
-      .replace(/　/g, " ")
-      .trim();
-
-    if (!normalized || normalized === "-" || normalized === "なし" || normalized === "非公開") continue;
-
-    const tokens = normalized.split(/[ ,/]+/).filter(Boolean);
-
-    // 複数値は option にしない
-    if (tokens.length !== 1) continue;
-
-    const token = tokens[0].trim();
-    if (!token || token === "-" || token === "なし" || token === "非公開") continue;
-
-    out.add(token);
-  }
-
-  return Array.from(out).sort((a, b) => a.localeCompare(b, "ja"));
-}
 
 /** shop の DC が単一値なら返す / 複数値なら null */
 function getSingleDc(shop: Shop): string | null {
@@ -134,6 +99,15 @@ function getShopNo(shop: Shop) {
 }
 
 export default function ShopListClient({ items }: { items: Shop[] }) {
+  // APIからoptionsを取得
+  const [options, setOptions] = useState<{ dcs: string[], races: string[], days: string[] }>({ dcs: [], races: [], days: [] });
+
+  useEffect(() => {
+    fetch('/api/shops')
+      .then(res => res.json())
+      .then(data => setOptions(data.options))
+      .catch(console.error);
+  }, []);
   // 「営業列が '-' のものだけ」を母集団に固定
   const baseItems = useMemo(() => {
     return items.filter((shop) => (shop["営業"] ?? "").trim() === "-");
@@ -163,15 +137,8 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
     name: "",
   });
 
-  // セレクト候補（baseItemsから生成）
-  const dcs = useMemo(() => extractSingleDcOptionsFromItems(baseItems), [baseItems]);
-  const races = useMemo(() => uniqSorted(baseItems.map((x) => x["種族・性別"] ?? "")), [baseItems]);
-  const days = useMemo(() => {
-    const enabled = dayKeys.filter((k) =>
-      baseItems.some((x) => (x[k] ?? "").toUpperCase() === "TRUE")
-    );
-    return uniqSorted([...enabled]);
-  }, [baseItems]);
+  // セレクト候補（APIから取得）
+  const { dcs, races, days } = options;
 
   // タブで母集団を切り替え
   const tabbedItems = useMemo(() => {
@@ -214,7 +181,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       name: nameInput,
     });
   };
-
   return (
     <>
       {/* 検索バー */}
@@ -235,7 +201,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
-
         <div className="search-field">
           <label className="search-label">種族・性別</label>
           <select
@@ -252,7 +217,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
-
         <div className="search-field">
           <label className="search-label">営業曜日</label>
           <select
@@ -269,7 +233,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
-
         <div className="search-field">
           <label className="search-label">店名</label>
           <input
@@ -288,7 +251,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
           </button>
         </div>
       </section>
-
       {/* タブ（検索バーと一覧の間） */}
       <section id="tab" aria-label="表示切り替え">
         <div className="container">
@@ -312,171 +274,178 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
           </div>
         </div>
       </section>
-
-
       {/* 一覧 */}
       <section id="shop">
         <div className="container">
-          {filtered.map((shop, idx) => {
-            // ---- 基本 ----
-            const no = getShopNo(shop);
-            const name = (shop["店名"] ?? "").trim();
-            const status = shop["営業"] ?? "";
-            const dc = shop["DC"] ?? shop["dc"] ?? "";
-            const server = shop["サーバー"] ?? "";
-            const start = shop["開始"] ?? "";
-            const end = shop["終了"] ?? "";
-            const price = shop["金額"] ?? "";
-            const race = shop["種族・性別"] ?? "";
-            const xtag = shop["Xタグ"] ?? shop["xタグ"] ?? "";
-            const note = shop["備考"] ?? "";
-            const checkedAt = shop["最終確認日"] ?? "";
+          <div className="shop-list">
+            {filtered.map((shop, idx) => {
+              // ---- 基本 ----
+              const no = getShopNo(shop);
+              const name = (shop["店名"] ?? "").trim();
+              const status = shop["営業"] ?? "";
+              const dc = shop["DC"] ?? shop["dc"] ?? "";
+              const server = shop["サーバー"] ?? "";
+              const start = shop["開始"] ?? "";
+              const end = shop["終了"] ?? "";
+              const price = shop["金額"] ?? "";
+              const race = shop["種族・性別"] ?? "";
+              const xtag = shop["Xタグ"] ?? shop["xタグ"] ?? "";
+              const note = shop["備考"] ?? "";
+              const checkedAt = shop["最終確認日"] ?? "";
 
-            // ---- 追加（後で整理する用）----
-            const mon = shop["月"] ?? "";
-            const tue = shop["火"] ?? "";
-            const wed = shop["水"] ?? "";
-            const thu = shop["木"] ?? "";
-            const fri = shop["金"] ?? "";
-            const sat = shop["土"] ?? "";
-            const sun = shop["日"] ?? "";
-            const irregular = shop["不定期"] ?? "";
+              // ---- 追加（後で整理する用）----
+              const mon = shop["月"] ?? "";
+              const tue = shop["火"] ?? "";
+              const wed = shop["水"] ?? "";
+              const thu = shop["木"] ?? "";
+              const fri = shop["金"] ?? "";
+              const sat = shop["土"] ?? "";
+              const sun = shop["日"] ?? "";
+              const irregular = shop["不定期"] ?? "";
 
-            const priceDetail = shop["金額詳細"] ?? "";
+              const priceDetail = shop["金額詳細"] ?? "";
 
-            const xId = shop["X ID"] ?? "";
-            const xUrl = shop["X URL"] ?? "";
-            const tagUrl = shop["ﾀｸﾞURL"] ?? "";
+              const xId = shop["x id"] ?? "";
+              const xUrl = shop["x url"] ?? "";
+              const tagUrl = shop["ﾀｸﾞurl"] ?? "";
 
-            const hp = shop["HP"] ?? "";
-            const advanceBooking = shop["事前予約"] ?? "";
+              const hp = shop["hp"] ?? "";
+              const advanceBooking = shop["事前予約"] ?? "";
 
-            const youbi = shop["曜日"] ?? "";
-            const businessStatus = shop["営業ステータス"] ?? "";
-            const timeText = shop["時間"] ?? "";
+              const youbi = shop["曜日"] ?? "";
+              const businessStatus = shop["営業ステータス"] ?? "";
+              const timeText = shop["時間"] ?? "";
 
-            const twitterId = shop["Twitter ID"] ?? "";
-            const tagText = shop["タグ"] ?? "";
+              const twitterId = shop["twitter id"] ?? "";
+              const tagText = shop["タグ"] ?? "";
 
-            const duplicateCheck = shop["重複確認"] ?? "";
-            const nameCheck = shop["店名(確認用)"] ?? "";
+              const duplicateCheck = shop["重複確認"] ?? "";
+              const nameCheck = shop["店名(確認用)"] ?? "";
 
-            const openNow = isOpenNow(shop, now);
+              const openNow = isOpenNow(shop, now);
 
-            // no が空なら detail へ飛べないのでリンク無効化（とりあえず）
-            const href = no ? `/shops/${encodeURIComponent(no)}` : undefined;
+              // no が空なら detail へ飛べないのでリンク無効化（とりあえず）
+              const href = no ? `/shops/${encodeURIComponent(no)}` : undefined;
 
-            const CardInner = (
-              <article className="shop-card">
-                <div className="shop-card__status">
-                  {openNow ? <span className="shop-card__openLabel">
-                    <Image
-                      src="/shop-card__openLabel.svg"
-                      alt="OPEN"
-                      width={15}
-                      height={11}
-                    />
-                    営業中
-                  </span> : null}
-                </div>
-                <h2 className="shop-card__title">
-                  <span className="shop-card__name">{name || "(店名なし)"}</span>
-                </h2>
-                <div className="shop-card__dc">DC: {dc || "-"}</div>
-                <div className="shop-card__server">サーバー: {server || "-"}</div>
-                {xtag && (
-                  <div className="shop-card__tag">
-                    <span>{xtag}</span>
-                  </div>
-                )
-                }
-                <div className="shop-card__flex">
-                  {race && (
-                    <div className="shop-card__race">
+              const CardInner = (
+                <article className="shop-card">
+                  <div className="shop-card__status">
+                    {openNow ? <span className="shop-card__openLabel">
                       <Image
-                        src="/race.svg"
-                        alt="race"
+                        src="/shop-card__openLabel.svg"
+                        alt="OPEN"
                         width={15}
                         height={11}
                       />
+                      営業中
+                    </span> : null}
+                  </div>
+                  <h2 className="shop-card__title">
+                    <span className="shop-card__name">{name || "(店名なし)"}</span>
+                  </h2>
+                  <div className="shop-card__dc">DC: {dc || "-"}</div>
+                  <div className="shop-card__server">サーバー: {server || "-"}</div>
+                  {xtag && (
+                    <div className="shop-card__tag">
+                      <span>{xtag}</span>
                     </div>
                   )
-
                   }
-                  {xId && (
-                    <div className="shop-card__x">
-                      <div className="shop-card__icon">
+                  <div className="shop-card__flex">
+                    {race && (
+                      <div className="shop-card__race">
                         <Image
-                          src="/x.svg"
-                          alt="x"
+                          src="/race.svg"
+                          alt="race"
                           width={15}
                           height={11}
                         />
+                        <span>{race}</span>
                       </div>
-                      <span>{xId}</span>
+                    )
+
+                    }
+                    {xId && (
+                      <div className="shop-card__x">
+                        <div className="shop-card__icon">
+                          <Image
+                            src="/x.svg"
+                            alt="x"
+                            width={15}
+                            height={11}
+                          />
+                        </div>
+                        <span>{xId}</span>
+                      </div>
+                    )
+                    }
+                  </div>
+                  {price && (
+                    <div className="shop-card__price">
+                      <Image
+                        src="/price.svg"
+                        alt="price"
+                        width={10}
+                        height={11}
+                      />
+                      <span>通常</span>
+                      {price}
                     </div>
                   )
-
                   }
-                </div>
-                <span className="shop-card__metaItem">
-                  時間: {start || "-"}〜{end || "-"}
-                </span>
-                <span className="shop-card__metaItem">金額: {price || "-"}</span>
-
-                <div className="shop-card__details">
-
-                  <div className="shop-card__detailRow">備考: {note || "-"}</div>
-                  <div className="shop-card__detailRow">最終確認日: {checkedAt || "-"}</div>
-
-                  <div className="shop-card__detailRow">金額詳細: {priceDetail || "-"}</div>
-
-                  <div className="shop-card__detailRow">曜日(集計): {youbi || "-"}</div>
-                  <div className="shop-card__detailRow">営業ステータス(集計): {businessStatus || "-"}</div>
-                  <div className="shop-card__detailRow">時間(集計): {timeText || "-"}</div>
-
-
-
-                  {/* X URL は xUrl がある時だけ */}
-                  {xUrl ? <div className="shop-card__detailRow">X URL: {xUrl}</div> : null}
-
-                  {/* ﾀｸﾞURL は tagUrl がある時だけ */}
-
-
-                  <div className="shop-card__detailRow">HP: {hp || "-"}</div>
-                  <div className="shop-card__detailRow">事前予約: {advanceBooking || "-"}</div>
-
-                  <div className="shop-card__detailRow">Twitter ID: {twitterId || "-"}</div>
-                  <div className="shop-card__detailRow">タグ: {tagText || "-"}</div>
-
-                  <div className="shop-card__detailRow">重複確認: {duplicateCheck || "-"}</div>
-                  <div className="shop-card__detailRow">店名(確認用): {nameCheck || "-"}</div>
-
-                  {/* TRUE の曜日だけ表示 */}
-                  <div className="shop-card__detailRow">
+                  {hp && (
+                    <div className="shop-card__hp">
+                      <Image
+                        src="/hp.svg"
+                        alt="hp"
+                        width={10}
+                        height={11}
+                      />
+                      <span>{hp}</span>
+                    </div>
+                  )}
+                  <div className="shop-card__youbi">
+                    <Image
+                      src="/youbi.svg"
+                      alt="youbi"
+                      width={10}
+                      height={10}
+                    />
                     {mon === "TRUE" && <span>月</span>}
                     {tue === "TRUE" && <span>火</span>}
                     {wed === "TRUE" && <span>水</span>}
                     {thu === "TRUE" && <span>木</span>}
                     {fri === "TRUE" && <span>金</span>}
-                    {sat === "TRUE" && <span>土</span>}
-                    {sun === "TRUE" && <span>日</span>}
-                    {irregular === "TRUE" && <span>不定期</span>}
+                    {sat === "TRUE" && <span className="orange">土</span>}
+                    {sun === "TRUE" && <span className="orange">日</span>}
                   </div>
+                  <div className="shop-card__time">
+                    <Image
+                      src="/time.svg"
+                      alt="time"
+                      width={10}
+                      height={10}
+                    />
+                    <span> {start || "-"}</span>〜<span>{end || "-"}</span>
+                  </div>
+                  <div className="shop-card__reserve">事前予約: <span>{advanceBooking || "なし"}</span></div>
+                  <div className="shop-card__desc">備考: {note || "-"}</div>
+                  {checkedAt && (
+                    <div className="shop-card__check">最終確認日: {checkedAt}</div>
+                  )}
+                </article>
+              );
+              return href ? (
+                <Link key={`${no}-${idx}`} href={href} className="shop-card__link">
+                  {CardInner}
+                </Link>
+              ) : (
+                <div key={`no-missing-${idx}`} className="shop-card__link is-disabled" aria-disabled="true">
+                  {CardInner}
                 </div>
-              </article>
-            );
-
-            return href ? (
-              <Link key={`${no}-${idx}`} href={href} className="shop-card__link">
-                {CardInner}
-              </Link>
-            ) : (
-              <div key={`no-missing-${idx}`} className="shop-card__link is-disabled" aria-disabled="true">
-                {CardInner}
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
     </>
