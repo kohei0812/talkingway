@@ -358,8 +358,12 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                     <span className="shop-card__name">{name || "(店名なし)"}</span>
                   </h2>
                   <div className="shop-card__locate">
-                    <span className="shop-card__dc">{dc || "-"}</span>
-                    <span className="shop-card__server">{server || "-"}</span>
+                    {dc && (
+                      <span className="shop-card__dc">{dc}</span>
+                    )}
+                    {server && (
+                      <span className="shop-card__server">{server}</span>
+                    )}
                   </div>
                   {xtag && (
                     <div className="shop-card__tag">
