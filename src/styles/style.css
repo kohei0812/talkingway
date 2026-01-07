@@ -361,7 +361,6 @@ main {
     color: #333;
   }
   #front #shop .shop-card__price img {
-    margin-left: 2px;
     margin-right: 10px;
   }
   #front #shop .shop-card__price span {
@@ -385,9 +384,6 @@ main {
     display: flex;
     align-items: center;
     gap: 5px;
-  }
-  #front #shop .shop-card__youbi img {
-    margin-left: 2px;
   }
   #front #shop .shop-card__youbi span {
     background-color: #328ACA;
