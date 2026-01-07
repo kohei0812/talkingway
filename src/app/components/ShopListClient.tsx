@@ -233,7 +233,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
-        <div className="search-field">
+        <div className="search-field name">
           <label className="search-label">店名</label>
           <input
             className="search-control"
@@ -241,7 +241,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             name="name"
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
-            placeholder="例：20minutes"
+            placeholder="入力してください"
           />
         </div>
 
@@ -253,13 +253,19 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       </section>
       {/* タブ（検索バーと一覧の間） */}
       <section id="tab" aria-label="表示切り替え">
-        <div className="container">
+        <div className="tab-container">
           <div className="tab-buttons">
             <button
               type="button"
               className={`tab-buttons__item ${tab === "all" ? "is-active" : ""}`}
               onClick={() => setTab("all")}
             >
+              <Image
+                src="/all.svg"
+                alt="all"
+                width={25}
+                height={24}
+              />
               全ての店舗
             </button>
             <button
@@ -267,16 +273,24 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
               className={`tab-buttons__item ${tab === "open" ? "is-active" : ""}`}
               onClick={() => setTab("open")}
             >
+              <Image
+                src="/open.svg"
+                alt="open"
+                width={25}
+                height={23}
+              />
               営業中の店舗
             </button>
-            <div className="tab-note">現在時刻: {formatNowJa(now)}</div>
+          </div>
+          <div className="tab-info">
+            <p className="tab-note">現在時刻: {formatNowJa(now)}</p>
             <p className="tab-count">全 {filtered.length} 件</p>
           </div>
         </div>
       </section>
       {/* 一覧 */}
       <section id="shop">
-        <div className="container">
+        <div className="shop-container">
           <div className="shop-list">
             {filtered.map((shop, idx) => {
               // ---- 基本 ----
@@ -343,8 +357,10 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                   <h2 className="shop-card__title">
                     <span className="shop-card__name">{name || "(店名なし)"}</span>
                   </h2>
-                  <div className="shop-card__dc">DC: {dc || "-"}</div>
-                  <div className="shop-card__server">サーバー: {server || "-"}</div>
+                  <div className="shop-card__locate">
+                    <span className="shop-card__dc">{dc || "-"}</span>
+                    <span className="shop-card__server">{server || "-"}</span>
+                  </div>
                   {xtag && (
                     <div className="shop-card__tag">
                       <span>{xtag}</span>
@@ -371,8 +387,8 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                           <Image
                             src="/x.svg"
                             alt="x"
-                            width={15}
-                            height={11}
+                            width={6}
+                            height={6}
                           />
                         </div>
                         <span>{xId}</span>

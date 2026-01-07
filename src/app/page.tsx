@@ -14,17 +14,20 @@ export default async function Home() {
 
   return (
     <>
-    <Header />
-    <main id="front">
-      {/* hero */}
-      <section className="hero">
-        <p className="hero-lead">テキストテキストテキストテキスト</p>
-        <p className="hero-ttl">Site Title</p>
-      </section>
-      {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
-      <ShopListClient items={topItems} />
-      <Link href="/about">このサイトについて</Link>
-    </main>
+      <Header />
+      <main id="front">
+        {/* hero */}
+        <section id="hero">
+          <div className="hero-container">
+            <p className="hero-lead"><span>テキストテキスト</span>
+            <span>テキストテキストテキストテキスト</span></p>
+          </div>
+          <p className="hero-ttl">Site Title</p>
+        </section>
+        {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
+        <ShopListClient items={topItems} />
+        <Link href="/about">このサイトについて</Link>
+      </main>
     </>
   );
 }
