@@ -188,6 +188,7 @@ main {
     font-weight: 600;
     width: 230px;
     border-radius: 29px;
+    cursor: pointer;
   }
 }
 @media screen and (min-width: 769px) {
