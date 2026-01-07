@@ -267,6 +267,7 @@ main {
   }
   #front #shop .shop-card img {
     flex-shrink: 0;
+    width: 20px;
   }
   #front #shop .shop-card__openLabel {
     width: 69px;
@@ -327,7 +328,6 @@ main {
     font-weight: 400;
   }
   #front #shop .shop-card__race img {
-    width: 15x;
     margin-right: 10px;
   }
   #front #shop .shop-card__x {
@@ -340,8 +340,8 @@ main {
   }
   #front #shop .shop-card__icon {
     flex-shrink: 0;
-    width: 12px;
-    height: 12px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,7 +350,7 @@ main {
     margin-right: 7px;
   }
   #front #shop .shop-card__icon img {
-    width: 6px;
+    width: 10px;
   }
   #front #shop .shop-card__price {
     margin-top: 12px;
@@ -361,7 +361,6 @@ main {
   }
   #front #shop .shop-card__price img {
     margin-left: 2px;
-    width: 10px;
     margin-right: 10px;
   }
   #front #shop .shop-card__price span {
@@ -378,7 +377,6 @@ main {
     align-items: center;
   }
   #front #shop .shop-card__hp img {
-    width: 15px;
     margin-right: 5px;
   }
   #front #shop .shop-card__youbi {
@@ -388,14 +386,13 @@ main {
     gap: 5px;
   }
   #front #shop .shop-card__youbi img {
-    width: 10px;
     margin-left: 2px;
   }
   #front #shop .shop-card__youbi span {
     background-color: #328ACA;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -413,9 +410,6 @@ main {
     align-items: center;
     gap: 5px;
     color: #333;
-  }
-  #front #shop .shop-card__time img {
-    width: 10px;
   }
   #front #shop .shop-card__time span {
     border-radius: 7.5px;
