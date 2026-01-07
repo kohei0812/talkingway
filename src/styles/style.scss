@@ -1,3 +1,45 @@
-.page-title{
-    color: red;
+/*----------------------------*/
+/*common */
+/*----------------------------*/
+
+body {
+    font-family: var(--font-noto-sans-jp), system-ui, sans-serif;
+}
+
+/*----------------------------*/
+/*header */
+/*----------------------------*/
+
+#header {
+
+    @media screen and (min-width:769px) {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 73px;
+        background-color: #1B1B1B;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 20px;
+
+        .header {
+            &-logo {}
+
+            &-ttl {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 56px;
+                    margin-right: 30px;
+                }
+
+                font-size:23px;
+                color: white;
+                font-weight: 900;
+            }
+        }
+    }
 }

@@ -2,6 +2,7 @@
 import { fetchSheetRowsRaw } from "@/lib/sheets";
 import { rowsToShopObjects } from "@/lib/shops";
 import ShopListClient from "@/app/components/ShopListClient";
+import Header from "./components/Header";
 import Link from "next/link";
 
 export default async function Home() {
@@ -12,12 +13,18 @@ export default async function Home() {
   const topItems = items.filter((shop) => (shop["営業"] ?? "").trim() === "-");
 
   return (
-    <main className="page">
-      <h1 className="page-title">お店一覧</h1>
-
+    <>
+    <Header />
+    <main id="front">
+      {/* hero */}
+      <section className="hero">
+        <p className="hero-lead">テキストテキストテキストテキスト</p>
+        <p className="hero-ttl">Site Title</p>
+      </section>
       {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
       <ShopListClient items={topItems} />
       <Link href="/about">このサイトについて</Link>
     </main>
+    </>
   );
 }
