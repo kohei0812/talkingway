@@ -120,6 +120,9 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
     return () => window.clearInterval(id);
   }, []);
 
+  // 表示件数管理（デフォルト20件）
+  const [displayCount, setDisplayCount] = useState(20);
+
   // タブ
   const [tab, setTab] = useState<"all" | "open">("all");
 
@@ -136,6 +139,11 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
     day: "",
     name: "",
   });
+
+  // 検索条件またはタブが変更されたときに表示件数をリセット
+  useEffect(() => {
+    setDisplayCount(20);
+  }, [query, tab]);
 
   // セレクト候補（APIから取得）
   const { dcs, races, days } = options;
@@ -172,6 +180,11 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       return true;
     });
   }, [tabbedItems, query]);
+
+  // 表示するショップ（最初のN件のみ）
+  const displayedShops = useMemo(() => {
+    return filtered.slice(0, displayCount);
+  }, [filtered, displayCount]);
 
   const onSearch = () => {
     setQuery({
@@ -292,7 +305,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       <section id="shop">
         <div className="shop-container">
           <div className="shop-list">
-            {filtered.map((shop, idx) => {
+            {displayedShops.map((shop, idx) => {
               // ---- 基本 ----
               const no = getShopNo(shop);
               const name = (shop["店名"] ?? "").trim();
@@ -303,7 +316,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
               const end = shop["終了"] ?? "";
               const price = shop["金額"] ?? "";
               const race = shop["種族・性別"] ?? "";
-              const xtag = shop["Xタグ"] ?? shop["xタグ"] ?? "";
               const note = shop["備考"] ?? "";
               const checkedAt = shop["最終確認日"] ?? "";
 
@@ -321,6 +333,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
 
               const xId = shop["x id"] ?? "";
               const xUrl = shop["x url"] ?? "";
+              const xtag = shop["Xタグ"] ?? shop["xタグ"] ?? "";
               const tagUrl = shop["ﾀｸﾞurl"] ?? "";
 
               const hp = shop["hp"] ?? "";
@@ -340,9 +353,8 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
 
               // no が空なら detail へ飛べないのでリンク無効化（とりあえず）
               const href = no ? `/shops/${encodeURIComponent(no)}` : undefined;
-
-              const CardInner = (
-                <article className="shop-card">
+              return (
+                <article key={no} className="shop-card">
                   <div className="shop-card__status">
                     {openNow ? <span className="shop-card__openLabel">
                       <Image
@@ -365,12 +377,15 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                       <span className="shop-card__server">{server}</span>
                     )}
                   </div>
-                  {xtag && (
-                    <div className="shop-card__tag">
-                      <span>{xtag}</span>
-                    </div>
-                  )
-                  }
+                   {xtag && (
+                      <div className="shop-card__tag">
+                        {xUrl ? (
+                          <Link target="_blank" href={xUrl}>{xtag}</Link>
+                        ) : (
+                          <span>{xtag}</span>
+                        )}
+                      </div>
+                    )}
                   <div className="shop-card__flex">
                     {race && (
                       <div className="shop-card__race">
@@ -395,10 +410,15 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                             height={6}
                           />
                         </div>
-                        <span>{xId}</span>
+
+                        {xUrl ? (
+                          <Link target="_blank" href={xUrl}>{xId}</Link>
+                        ) : (
+                          <span>{xId}</span>
+                        )}
                       </div>
-                    )
-                    }
+                    )}
+
                   </div>
                   {price && (
                     <div className="shop-card__price">
@@ -421,7 +441,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                         width={10}
                         height={11}
                       />
-                      <span>{hp}</span>
+                      <Link target="_blank" href={hp}>{hp}</Link>
                     </div>
                   )}
                   <div className="shop-card__youbi">
@@ -438,6 +458,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                     {fri === "TRUE" && <span>金</span>}
                     {sat === "TRUE" && <span className="orange">土</span>}
                     {sun === "TRUE" && <span className="orange">日</span>}
+                    {irregular === "TRUE" && <span className="irregular">不定期</span>}
                   </div>
                   <div className="shop-card__time">
                     <Image
@@ -453,19 +474,24 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                   {checkedAt && (
                     <div className="shop-card__check">最終確認日: {checkedAt}</div>
                   )}
+                  {href && (
+                    <Link href={href} className="shop-card__button">詳しく見る</Link>
+                  )}
                 </article>
-              );
-              return href ? (
-                <Link key={`${no}-${idx}`} href={href} className="shop-card__link">
-                  {CardInner}
-                </Link>
-              ) : (
-                <div key={`no-missing-${idx}`} className="shop-card__link is-disabled" aria-disabled="true">
-                  {CardInner}
-                </div>
               );
             })}
           </div>
+          {displayCount < filtered.length && (
+            <div className="shop-more">
+              <button
+                className="shop-more__button"
+                type="button"
+                onClick={() => setDisplayCount(prev => prev + 20)}
+              >
+                もっと見る
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>
