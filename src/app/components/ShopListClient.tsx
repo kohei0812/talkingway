@@ -398,7 +398,6 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                         <span>{race}</span>
                       </div>
                     )
-
                     }
                     {xId && (
                       <div className="shop-card__x">

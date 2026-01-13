@@ -629,4 +629,299 @@ main {
     font-size: 16px;
   }
 }
+
+/*----------------------------
+single
+----------------------------*/
+#single {
+  padding-bottom: 252px;
+  /*----------------------------
+  hero
+  ----------------------------*/
+  /*----------------------------
+  shop 
+  ----------------------------*/
+}
+#single #hero {
+  height: 275px;
+  background-image: url(../../public/hero-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  #single #hero {
+    height: 300px;
+  }
+}
+#single #hero::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+#single #hero .hero-container {
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1130px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+#single #hero .hero-ttl {
+  padding-top: 73px;
+  margin: auto;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 1;
+}
+@media screen and (max-width: 768px) {
+  #single #hero .hero-ttl {
+    font-size: 30px;
+    padding-top: 50px;
+  }
+}
+#single #shop {
+  padding-top: 100px;
+}
+#single #shop .shop-container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#single #shop .shop-card {
+  padding: 60px;
+  background-color: white;
+  border: 1px solid #804F21;
+  position: relative;
+}
+#single #shop .shop-card * {
+  font-size: 16px;
+}
+#single #shop .shop-card img {
+  flex-shrink: 0;
+  width: 20px;
+  height: auto;
+}
+#single #shop .shop-card__ttl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+#single #shop .shop-card__openLabel {
+  width: 69px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #D5B66F, #EFE5CB, #FAF3DD, #E1BE82);
+  font-weight: bold;
+  color: #504636;
+}
+#single #shop .shop-card__openLabel img {
+  width: 20px;
+  margin-right: 15px;
+}
+#single #shop .shop-card__locate {
+  margin-top: 32px;
+  display: flex;
+  gap: 15px;
+}
+#single #shop .shop-card__locate span {
+  color: white;
+  font-weight: 500;
+  display: inline-block;
+  padding: 3px 15px;
+}
+#single #shop .shop-card__dc {
+  background-color: #3EB1F8;
+}
+#single #shop .shop-card__server {
+  background-color: #4BC6AC;
+}
+#single #shop .shop-card__tag {
+  margin-top: 17px;
+  background-color: #333;
+  display: inline-block;
+  color: white;
+  padding: 5px 15px;
+}
+#single #shop .shop-card__race {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-weight: 400;
+}
+#single #shop .shop-card__race img {
+  margin-right: 10px;
+}
+#single #shop .shop-card__x {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+#single #shop .shop-card__x span {
+  color: #333;
+  font-weight: 400;
+}
+#single #shop .shop-card__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E71919;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+#single #shop .shop-card__icon img {
+  width: 10px;
+}
+#single #shop .shop-card__price {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+#single #shop .shop-card__price img {
+  margin-top: 5px;
+}
+#single #shop .shop-card__fee {
+  margin-left: 17px;
+}
+#single #shop .shop-card__fee .item {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 15px;
+}
+#single #shop .shop-card__fee .item span {
+  margin-right: 15px;
+  background-color: #333;
+  color: white;
+  padding: 6px 17px;
+}
+#single #shop .shop-card__hp {
+  margin-top: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+#single #shop .shop-card__hp img {
+  margin-right: 15px;
+}
+#single #shop .shop-card__youbi {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#single #shop .shop-card__youbi span {
+  background-color: #328ACA;
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  border-radius: 50%;
+  padding-bottom: 3px;
+}
+#single #shop .shop-card__youbi span.orange {
+  background-color: #F8983E;
+}
+#single #shop .shop-card__youbi span.irregular {
+  width: 70px;
+  border-radius: 10px;
+}
+#single #shop .shop-card__time {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #333;
+}
+#single #shop .shop-card__time span {
+  border-radius: 11.5px;
+  background-color: #333;
+  padding: 2px 11px 3px;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#single #shop .shop-card__reserve {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#single #shop .shop-card__reserve span {
+  border-radius: 12px;
+  background-color: #333;
+  padding: 4px 19px;
+  color: white;
+  font-size: 16px;
+  padding-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+#single #shop .shop-card__desc {
+  margin-top: 45px;
+  color: #333;
+  line-height: 1.6;
+}
+#single #shop .shop-card__check {
+  font-size: 16px;
+  color: #7F7F7F;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+#single .totop {
+  margin: 100px auto 0;
+  width: 255px;
+  display: flex;
+  height: 69px;
+  border-radius: 34.5px;
+  background: linear-gradient(to right, #3690D5, #1C4B6F);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  border-color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#single .totop::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  transform: rotate(-45deg);
+  margin-right: 20px;
+}
+@media screen and (max-width: 768px) {
+  #single .totop {
+    height: 50px;
+    font-size: 16px;
+  }
+}
 /*# sourceMappingURL=style.css.map */

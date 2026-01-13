@@ -2,6 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 import {
   getShopNo,
   buildOpenDays,
@@ -30,7 +33,7 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
         const response = await fetch('/api/debug/shops');
         const data = await response.json();
         const foundShop = data.items.find((x: ShopRecord) => getShopNo(x) === no);
-        
+
         setShop(foundShop || null);
       } catch (error) {
         console.error('データの取得に失敗しました:', error);
@@ -57,7 +60,7 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
 
   if (!shop) {
     return (
-      <main className="single">
+      <main id="single">
         <h1 className="single-ttl">店舗が見つかりません</h1>
         <p>No: {noParam}</p>
         <p>
@@ -80,90 +83,168 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
   const priceDetail = pick(shop, "金額詳細");
   const race = pick(shop, "種族・性別");
 
-  const xId = pick(shop, "X ID") || pick(shop, "Twitter ID");
-  const xUrl = pick(shop, "X URL");
+  const xId = pick(shop, "x id") || pick(shop, "Twitter ID");
+  const xUrl = pick(shop, "x url");
   const xTag = pick(shop, "Xタグ") || pick(shop, "xタグ");
   const tagUrl = pick(shop, "ﾀｸﾞURL");
 
-  const hp = pick(shop, "HP");
-  const reserve = pick(shop, "事前予約");
+  const hp = pick(shop, "hp");
+  const advanceBooking = shop["事前予約"] ?? "";
   const note = pick(shop, "備考");
   const checkedAt = pick(shop, "最終確認日");
 
+  // ---- 追加（後で整理する用）----
+  const mon = shop["月"] ?? "";
+  const tue = shop["火"] ?? "";
+  const wed = shop["水"] ?? "";
+  const thu = shop["木"] ?? "";
+  const fri = shop["金"] ?? "";
+  const sat = shop["土"] ?? "";
+  const sun = shop["日"] ?? "";
+  const irregular = shop["不定期"] ?? "";
   return (
-    <main className="index">
-      <p style={{ marginBottom: 12 }}>
-        <Link href="/">← 一覧へ戻る</Link>
-      </p>
-
-      <h1 className="index-title">
-        {name || "(店名なし)"} {no ? <span style={{ fontSize: 14 }}>#{no}</span> : null}
-      </h1>
-
-      <div style={{ marginBottom: 12 }}>
-        <span>現在時刻: {formatNowJa(now)}</span>
-        {openNow ? <span style={{ marginLeft: 12 }}>【営業中】</span> : null}
-      </div>
-
-      <section className="shop-detail">
-        <div className="shop-detail__row">営業: {status || "-"}</div>
-
-        <div className="shop-detail__row">
-          営業曜日:{" "}
-          {openDays.length ? (
-            <span>
-              {openDays.map((d) => (
-                <span key={d} style={{ marginRight: 8 }}>
-                  {d}
-                </span>
-              ))}
-            </span>
-          ) : (
-            "-"
-          )}
-        </div>
-
-        <div className="shop-detail__row">時間: {start || "-"}〜{end || "-"}</div>
-        <div className="shop-detail__row">DC: {dc || "-"}</div>
-        <div className="shop-detail__row">サーバー: {server || "-"}</div>
-
-        <div className="shop-detail__row">金額: {price || "-"}</div>
-        {priceDetail ? <div className="shop-detail__row">金額詳細: {priceDetail}</div> : null}
-
-        <div className="shop-detail__row">種族・性別: {race || "-"}</div>
-
-        {xId ? <div className="shop-detail__row">X ID: {xId}</div> : null}
-        {xUrl ? (
-          <div className="shop-detail__row">
-            X URL:{" "}
-            <a href={xUrl} target="_blank" rel="noreferrer">
-              {xUrl}
-            </a>
+    <>
+      <Header />
+      <main id="single">
+        {/* hero */}
+        <section id="hero">
+          <div className="hero-container">
+            <h1 className="hero-ttl">{name || "(店名なし)"} </h1>
           </div>
-        ) : null}
-        {xTag ? <div className="shop-detail__row">Xタグ: {xTag}</div> : null}
-        {tagUrl ? (
-          <div className="shop-detail__row">
-            ﾀｸﾞURL:{" "}
-            <a href={tagUrl} target="_blank" rel="noreferrer">
-              {tagUrl}
-            </a>
-          </div>
-        ) : null}
+        </section>
+        {/* content */}
+        <section id="shop">
+          <div className="container shop-container">
+            <div className="shop-card">
+              <div className="shop-card__ttl">
+                {name || "(店名なし)"}
+                <div className="shop-card__status">
+                  {openNow ? <span className="shop-card__openLabel">
+                    <Image
+                      src="/shop-card__openLabel.svg"
+                      alt="OPEN"
+                      width={15}
+                      height={11}
+                    />
+                    営業中
+                  </span> : null}
+                </div>
+              </div>
+              <div className="shop-card__locate">
+                {dc && (
+                  <span className="shop-card__dc">{dc}</span>
+                )}
+                {server && (
+                  <span className="shop-card__server">{server}</span>
+                )}
+              </div>
+              {xTag && (
+                <div className="shop-card__tag">
+                  {xUrl ? (
+                    <Link target="_blank" href={xUrl}>{xTag}</Link>
+                  ) : (
+                    <span>{xTag}</span>
+                  )}
+                </div>
+              )}
+              {race && (
+                <div className="shop-card__race">
+                  <Image
+                    src="/race.svg"
+                    alt="race"
+                    width={15}
+                    height={11}
+                  />
+                  <span>{race}</span>
+                </div>
+              )}
+              {xId && (
+                <div className="shop-card__x">
+                  <div className="shop-card__icon">
+                    <Image
+                      src="/x.svg"
+                      alt="x"
+                      width={6}
+                      height={6}
+                    />
+                  </div>
 
-        {hp ? (
-          <div className="shop-detail__row">
-            HP:{" "}
-            <a href={hp} target="_blank" rel="noreferrer">
-              {hp}
-            </a>
+                  {xUrl ? (
+                    <Link target="_blank" href={xUrl}>{xId}</Link>
+                  ) : (
+                    <span>{xId}</span>
+                  )}
+                </div>
+              )}
+              {price && (
+                <div className="shop-card__price">
+                  <Image
+                    src="/price.svg"
+                    alt="price"
+                    width={10}
+                    height={11}
+                  />
+                  <div className="shop-card__fee">
+                    <div className="item">
+                      <span>通常</span>
+                      {price}
+                    </div>
+                    <div className="item">
+                      <span>詳細</span>
+                      {priceDetail && (priceDetail)}
+                    </div>
+                  </div>
+                </div>
+              )
+              }
+              {hp && (
+                <div className="shop-card__hp">
+                  <Image
+                    src="/hp.svg"
+                    alt="hp"
+                    width={10}
+                    height={11}
+                  />
+                  <Link target="_blank" href={hp}>{hp}</Link>
+                </div>
+              )}
+              <div className="shop-card__youbi">
+                <Image
+                  src="/youbi.svg"
+                  alt="youbi"
+                  width={10}
+                  height={10}
+                />
+                {mon === "TRUE" && <span>月</span>}
+                {tue === "TRUE" && <span>火</span>}
+                {wed === "TRUE" && <span>水</span>}
+                {thu === "TRUE" && <span>木</span>}
+                {fri === "TRUE" && <span>金</span>}
+                {sat === "TRUE" && <span className="orange">土</span>}
+                {sun === "TRUE" && <span className="orange">日</span>}
+                {irregular === "TRUE" && <span className="irregular">不定期</span>}
+              </div>
+              <div className="shop-card__time">
+                <Image
+                  src="/time.svg"
+                  alt="time"
+                  width={10}
+                  height={10}
+                />
+                <span> {start || "-"}</span>〜<span>{end || "-"}</span>
+              </div>
+              <div className="shop-card__reserve">事前予約: <span>{advanceBooking || "なし"}</span></div>
+              <div className="shop-card__desc">備考: {note || "-"}</div>
+              {checkedAt && (
+                <div className="shop-card__check">最終確認日: {checkedAt}</div>
+              )}
+            </div>
           </div>
-        ) : null}
+        </section>
 
-        {reserve ? <div className="shop-detail__row">事前予約: {reserve}</div> : null}
-        {note ? <div className="shop-detail__row">備考: {note}</div> : null}
-        {checkedAt ? <div className="shop-detail__row">最終確認日: {checkedAt}</div> : null}
-      </section>
-    </main>
+        <Link className="totop" href="/">一覧へ戻る</Link>
+      </main>
+      <Footer />
+    </>
   );
 }

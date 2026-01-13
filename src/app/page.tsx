@@ -28,8 +28,8 @@ export default async function Home() {
         {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
         <ShopListClient items={topItems} />
         <Link href="/about">このサイトについて</Link>
-        <Footer/>
       </main>
+       <Footer/>
     </>
   );
 }
