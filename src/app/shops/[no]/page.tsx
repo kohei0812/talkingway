@@ -3,8 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
 import {
   getShopNo,
   buildOpenDays,
@@ -104,7 +102,6 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
   const irregular = shop["不定期"] ?? "";
   return (
     <>
-      <Header />
       <main id="single">
         {/* hero */}
         <section id="hero">
@@ -244,7 +241,6 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
 
         <Link className="totop" href="/">一覧へ戻る</Link>
       </main>
-      <Footer />
     </>
   );
 }

@@ -389,8 +389,8 @@ main {
   height: auto;
 }
 #front #shop .shop-card__openLabel {
-  width: 69px;
-  height: 20px;
+  width: 80px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -573,8 +573,8 @@ main {
   font-size: 12px;
   color: #7F7F7F;
   position: absolute;
-  top: 10px;
-  left: 25px;
+  top: 20px;
+  right: 25px;
 }
 #front #shop .shop-card__button {
   display: flex;
@@ -642,6 +642,11 @@ single
   shop 
   ----------------------------*/
 }
+@media screen and (max-width: 768px) {
+  #single {
+    padding-bottom: 100px;
+  }
+}
 #single #hero {
   height: 275px;
   background-image: url(../../public/hero-bg.jpg);
@@ -688,6 +693,11 @@ single
 #single #shop {
   padding-top: 100px;
 }
+@media screen and (max-width: 768px) {
+  #single #shop {
+    padding-top: 50px;
+  }
+}
 #single #shop .shop-container {
   max-width: 1230px;
   margin: 0 auto;
@@ -700,8 +710,18 @@ single
   border: 1px solid #804F21;
   position: relative;
 }
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card {
+    padding: 20px;
+  }
+}
 #single #shop .shop-card * {
   font-size: 16px;
+}
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card * {
+    font-size: 14px;
+  }
 }
 #single #shop .shop-card img {
   flex-shrink: 0;
@@ -715,19 +735,37 @@ single
   font-size: 32px;
   font-weight: bold;
 }
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card__ttl {
+    font-size: 24px;
+    justify-content: flex-start;
+  }
+}
 #single #shop .shop-card__openLabel {
-  width: 69px;
-  height: 20px;
+  width: 100px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(to right, #D5B66F, #EFE5CB, #FAF3DD, #E1BE82);
   font-weight: bold;
   color: #504636;
+  margin-left: 20px;
+}
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card__openLabel {
+    margin-left: 10px;
+    width: 80px;
+  }
 }
 #single #shop .shop-card__openLabel img {
   width: 20px;
   margin-right: 15px;
+}
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card__openLabel img {
+    margin-right: 8px;
+  }
 }
 #single #shop .shop-card__locate {
   margin-top: 32px;
@@ -809,6 +847,12 @@ single
   background-color: #333;
   color: white;
   padding: 6px 17px;
+}
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card__fee .item span {
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
 }
 #single #shop .shop-card__hp {
   margin-top: 10px;
@@ -893,6 +937,13 @@ single
   top: 25px;
   right: 25px;
 }
+@media screen and (max-width: 768px) {
+  #single #shop .shop-card__check {
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+  }
+}
 #single .totop {
   margin: 100px auto 0;
   width: 255px;
@@ -922,6 +973,68 @@ single
   #single .totop {
     height: 50px;
     font-size: 16px;
+  }
+}
+
+/*---------------------
+/*totop 
+---------------------*/
+@media screen and (min-width: 769px) {
+  #totop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 17px;
+    color: white;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    z-index: 1000;
+    transform: translateY(300px);
+    background-color: #212121;
+    padding: 20px;
+    cursor: pointer;
+  }
+  #totop.active {
+    transition: all 0.6s ease;
+    transform: translateY(0);
+  }
+  #totop:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    transform: rotate(-45deg);
+  }
+}
+@media screen and (max-width: 768px) {
+  #totop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    transform: translateY(300px);
+    background-color: #212121;
+    padding: 20px;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  #totop.active {
+    transition: all 0.6s ease;
+    transform: translateY(0);
+  }
+  #totop:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    transform: rotate(-45deg);
   }
 }
 /*# sourceMappingURL=style.css.map */
