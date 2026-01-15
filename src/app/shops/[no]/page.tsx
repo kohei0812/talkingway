@@ -53,7 +53,14 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
   const openDays = useMemo(() => shop ? buildOpenDays(shop) : [], [shop]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div id="loading">
+      <Image
+        src="/loading.gif"
+        alt="loading"
+        width={1000}
+        height={850}
+      />
+    </div>;
   }
 
   if (!shop) {
