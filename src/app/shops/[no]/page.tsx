@@ -60,6 +60,7 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
         width={1000}
         height={850}
       />
+      <p>Loading...</p>
     </div>;
   }
 
