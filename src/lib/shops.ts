@@ -224,9 +224,8 @@ export function isShopOpenAt(shop: ShopRecord, now: Date = new Date()): boolean 
   const today = getJpDayKeyFromDate(now);
   const yesterday = getYesterdayDayKey(today);
 
-  // 「不定期」がTRUEなら曜日は全部OK扱い（必要なら後で変更可）
-  const todayOn = isTrue(shop[today]) || isTrue(shop["不定期"]);
-  const yesterdayOn = isTrue(shop[yesterday]) || isTrue(shop["不定期"]);
+  const todayOn = isTrue(shop[today]);
+  const yesterdayOn = isTrue(shop[yesterday]);
 
   // 開始==終了 は 24h扱い（曜日がONなら常に営業中）
   if (startMin === endMin) return todayOn;

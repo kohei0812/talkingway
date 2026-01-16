@@ -58,10 +58,9 @@ function isOpenNow(shop: Shop, now: Date): boolean {
   const todayKey = getTodayKeyJa(now);
 
   const todayFlag = (shop[todayKey] ?? "").toUpperCase() === "TRUE";
-  const irregularFlag = (shop["不定期"] ?? "").toUpperCase() === "TRUE";
 
-  // 曜日が当てはまらないなら営業中扱いにしない
-  if (!todayFlag && !irregularFlag) return false;
+  // 曜日が当てはまらないなら営業中扱いにしない（不定期は営業中に含めない）
+  if (!todayFlag) return false;
 
   const startRaw = shop["開始"] ?? "";
   const endRaw = shop["終了"] ?? "";
