@@ -1,12 +1,18 @@
 // src/app/about/page.tsx
-
+import Link from "next/link";
+import Image from "next/image";
 export const dynamic = "force-static"; // これで静的化（SSRに寄せない）
 export const revalidate = false; // 再生成しない（完全固定）
 
 export default function AboutPage() {
   return (
-    <main className="page">
-      <h1 className="page__title">このサイトについて</h1>
+    <main id="about">
+       {/* page-header */}
+        <section id="page-header">
+          <div className="hero-container">
+            <h1 className="hero-ttl">このサイトについて</h1>
+          </div>
+        </section>
 
       <section className="content">
         <p>

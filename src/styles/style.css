@@ -647,7 +647,7 @@ single
     padding-bottom: 100px;
   }
 }
-#single #hero {
+#single #page-header {
   height: 275px;
   background-image: url(../../public/hero-bg.jpg);
   background-size: cover;
@@ -656,11 +656,11 @@ single
   position: relative;
 }
 @media screen and (max-width: 768px) {
-  #single #hero {
+  #single #page-header {
     height: 300px;
   }
 }
-#single #hero::before {
+#single #page-header::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -668,7 +668,7 @@ single
   inset: 0;
   background-color: rgba(255, 255, 255, 0.3);
 }
-#single #hero .hero-container {
+#single #page-header .hero-container {
   padding-left: 15px;
   padding-right: 15px;
   max-width: 1130px;
@@ -677,7 +677,7 @@ single
   display: flex;
   height: 100%;
 }
-#single #hero .hero-ttl {
+#single #page-header .hero-ttl {
   padding-top: 73px;
   margin: auto;
   font-weight: 900;
@@ -685,7 +685,7 @@ single
   line-height: 1;
 }
 @media screen and (max-width: 768px) {
-  #single #hero .hero-ttl {
+  #single #page-header .hero-ttl {
     font-size: 30px;
     padding-top: 50px;
   }

@@ -111,8 +111,8 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
   return (
     <>
       <main id="single">
-        {/* hero */}
-        <section id="hero">
+        {/* page-header */}
+        <section id="page-header">
           <div className="hero-container">
             <h1 className="hero-ttl">{name || "(店名なし)"} </h1>
           </div>
