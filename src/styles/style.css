@@ -39,7 +39,9 @@ body {
   font-weight: 900;
 }
 #header .header-ttl img {
+  flex-shrink: 0;
   width: 56px;
+  height: auto;
   margin-right: 30px;
 }
 @media screen and (max-width: 768px) {
@@ -132,6 +134,7 @@ main {
   background-color: rgba(255, 255, 255, 0.6);
   display: inline-block;
   margin-bottom: 40px;
+  padding: 0 10px;
 }
 @media screen and (max-width: 768px) {
   #front #hero .hero-lead span {
@@ -140,15 +143,17 @@ main {
 }
 #front #hero .hero-ttl {
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
   right: 0;
   font-weight: 900;
-  font-size: 243px;
+  font-size: 143px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
 }
 @media screen and (max-width: 768px) {
   #front #hero .hero-ttl {
+    position: relative;
+    margin-top: 30px;
     font-size: 70px;
   }
 }
