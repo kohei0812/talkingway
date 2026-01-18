@@ -53,7 +53,7 @@ export default function AboutPage() {
           </li>
           <li>営業中判定を含む掲載内容は実際と異なる場合があります。最新の情報は各公式情報をご確認ください。</li>
           <li>
-            情報提供・情報の不備・ご意見は
+            情報提供・不備・ご意見は
             <Link href="https://x.com/Talkingway_XIV?s=20" target="_blank">
               @Talkingway_XIV
             </Link>へDMかスプレッドシートのご意見板に記入お願いします。
