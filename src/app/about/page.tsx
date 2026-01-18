@@ -55,7 +55,7 @@ export default function AboutPage() {
           <li>
             情報提供・情報の不備・ご意見は
             <Link href="https://x.com/Talkingway_XIV?s=20" target="_blank">
-              トーキングウェイ＠対話店一覧まとめました！
+              @Talkingway_XIV
             </Link>へDMかスプレッドシートのご意見板に記入お願いします。
           </li>
         </ul>
@@ -63,7 +63,7 @@ export default function AboutPage() {
         <p>
           サイトの不具合・お問い合わせ・Web制作のご依頼は
           <Link href="https://x.com/Tea_B_FF14" target="_blank">
-            ティー@光のWebデザイナー
+            @Tea_B_FF14
           </Link>
           までお願いします。
         </p>

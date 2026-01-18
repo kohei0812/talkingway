@@ -662,6 +662,7 @@ page-header
   background-color: rgba(255, 255, 255, 0.3);
 }
 #page-header .hero-container {
+  padding-top: 73px;
   padding-left: 15px;
   padding-right: 15px;
   max-width: 1130px;
@@ -670,17 +671,24 @@ page-header
   display: flex;
   height: 100%;
 }
+@media screen and (max-width: 768px) {
+  #page-header .hero-container {
+    padding-top: 50px;
+  }
+}
 #page-header .hero-ttl {
-  padding-top: 73px;
+  padding: 20px 30px;
   margin: auto;
   font-weight: 900;
   font-size: 50px;
   line-height: 1;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 @media screen and (max-width: 768px) {
   #page-header .hero-ttl {
     font-size: 30px;
-    padding-top: 50px;
+    -webkit-padding-start: 10px 15px;
+            padding-inline-start: 10px 15px;
   }
 }
 
@@ -713,14 +721,14 @@ single
   padding-right: 15px;
 }
 #single #shop .shop-card {
-  padding: 60px;
+  padding: 50px 40px;
   background-color: white;
   border: 1px solid #804F21;
   position: relative;
 }
 @media screen and (max-width: 768px) {
   #single #shop .shop-card {
-    padding: 20px;
+    padding: 25px;
   }
 }
 #single #shop .shop-card * {
@@ -955,16 +963,16 @@ single
   }
 }
 #single .totop {
-  margin: 100px auto 0;
+  margin: 60px auto 0;
   width: 255px;
   display: flex;
-  height: 69px;
+  height: 50px;
+  font-size: 16px;
   border-radius: 34.5px;
   background: linear-gradient(to right, #3690D5, #1C4B6F);
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 20px;
   border-color: white;
   font-weight: bold;
   cursor: pointer;
@@ -981,8 +989,7 @@ single
 }
 @media screen and (max-width: 768px) {
   #single .totop {
-    height: 50px;
-    font-size: 16px;
+    margin-top: 30px;
   }
 }
 
@@ -1081,31 +1088,56 @@ single
 }
 #about .about-container {
   max-width: 890px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 50px 40px;
   margin: 0 auto;
+  background-color: white;
+  border: 1px solid #804F21;
+}
+@media screen and (max-width: 768px) {
+  #about .about-container {
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 25px;
+  }
 }
 #about .about h2 {
   padding: 0.25em 0.5em;
   color: black;
   background: transparent;
   border-left: solid 5px #1C4B6F;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 768px) {
+  #about .about h2 {
+    font-size: 20px;
+  }
 }
 #about .about p {
   margin-bottom: 30px;
   line-height: 1.6;
   color: black;
 }
+@media screen and (max-width: 768px) {
+  #about .about p {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+}
 #about .about a {
-  color: #333;
+  color: #0000EE;
   text-decoration: underline;
 }
 #about .about img {
   display: block;
+  width: 100%;
   max-width: 500px;
   height: auto;
   margin: 30px auto;
+}
+@media screen and (max-width: 768px) {
+  #about .about img {
+    margin: 20px auto;
+  }
 }
 #about .about ul {
   margin-bottom: 30px;
@@ -1127,5 +1159,13 @@ single
   position: absolute;
   top: 8px;
   left: 0;
+}
+@media screen and (max-width: 768px) {
+  #about .about ul {
+    margin-bottom: 20px;
+  }
+  #about .about ul li {
+    font-size: 14px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
