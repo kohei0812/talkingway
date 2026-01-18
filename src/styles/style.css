@@ -144,7 +144,7 @@ main {
 #front #hero .hero-ttl {
   position: absolute;
   bottom: 30px;
-  right: 0;
+  right: 15px;
   font-weight: 900;
   font-size: 143px;
   color: rgba(255, 255, 255, 0.7);
