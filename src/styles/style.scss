@@ -708,13 +708,13 @@ main {
                     margin: 0 auto;
                     width: 255px;
                     display: flex;
-                    height: 50px;
+                    height: 70px;
                     border-radius: 34.5px;
                     background: linear-gradient(to right, #3690D5, #1C4B6F);
                     align-items: center;
                     justify-content: center;
                     color: white;
-                    font-size: 16px;
+                    font-size: 20px;
                     border-color: white;
                     font-weight: bold;
                     cursor: pointer;
@@ -1101,8 +1101,8 @@ single
         margin: 60px auto 0;
         width: 255px;
         display: flex;
-        height: 50px;
-        font-size: 16px;
+        height: 70px;
+        font-size: 20px;
         border-radius: 34.5px;
         background: linear-gradient(to right, #3690D5, #1C4B6F);
         align-items: center;
@@ -1125,6 +1125,8 @@ single
 
         @media screen and (max-width:768px) {
             margin-top: 30px;
+            font-size:16px;
+            height: 50px;
         }
     }
 }
