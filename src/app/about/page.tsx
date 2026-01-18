@@ -47,7 +47,7 @@ export default function AboutPage() {
           <li>
             掲載情報は
             <Link href="https://docs.google.com/spreadsheets/d/1KT7hkj4io88d0Vp0ia2jpeye5Y6g-OhyzJzZtr4S7pc/edit" target="_blank">
-              こちらのスプレッドシート
+              【FF14】有料対話店一覧
             </Link>
             の転載となります。
           </li>
