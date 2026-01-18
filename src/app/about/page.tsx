@@ -18,7 +18,7 @@ export default function AboutPage() {
       <section className="about">
         <div className="about-container">
         <p>
-          このサイトは、エオルゼアの有料対話店を一覧・検索できるようにまとめたものです。
+         エオルゼアの有料対話店を一覧・検索できるようにまとめたサイトです。 
         </p>
         <h2>{SITE_TITLE}って何？</h2>
         <p>「有料対話店ってどんなどころ？」「{SITE_TITLE}は何？」<br />

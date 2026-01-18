@@ -48,7 +48,7 @@ export default function Header() {
             <Link href="/" className="header-logo">
                 <h1 className="header-ttl">
                     <Image
-                        src="/logo.svg"
+                        src="/logo.png"
                         alt={SITE_TITLE}
                         width={56}
                         height={56}
