@@ -18,7 +18,7 @@ export default function AboutPage() {
       <section className="about">
         <div className="about-container">
         <p>
-         エオルゼアの有料対話店を一覧・検索できるようにまとめたサイトです。 
+         ファイナルファンタジーXIVの有料対話店を一覧表示・検索できるようにまとめたサイトです。 
         </p>
         <h2>{SITE_TITLE}って何？</h2>
         <p>「有料対話店ってどんなどころ？」「{SITE_TITLE}は何？」<br />
