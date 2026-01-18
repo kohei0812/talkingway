@@ -584,7 +584,7 @@ main {
   align-items: center;
   justify-content: center;
   margin-top: 2px;
-  padding-bottom: 7px;
+  padding-bottom: 5px;
 }
 #front #shop .shop-card__desc {
   margin-top: 12px;
@@ -951,7 +951,7 @@ single
 #single #shop .shop-card__reserve span {
   border-radius: 12px;
   background-color: #333;
-  padding: 4px 19px;
+  padding: 4px 19px 7px;
   color: white;
   font-size: 16px;
   padding-bottom: 3px;
