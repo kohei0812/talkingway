@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { SITE_TITLE } from "@/lib/constants";
 
 export default function Header() {
     const [isActive, setIsActive] = useState(false);
@@ -48,11 +49,11 @@ export default function Header() {
                 <h1 className="header-ttl">
                     <Image
                         src="/logo.svg"
-                        alt="サイトタイトル"
+                        alt={SITE_TITLE}
                         width={56}
                         height={56}
                     />
-                    サイトタイトル
+                    {SITE_TITLE}
                 </h1>
             </Link>
         </header>

@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/styles/style.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/lib/constants";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -12,8 +13,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "サイトタイトル",
-  description: "サイトの説明文",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
 };
 
 export default function RootLayout({

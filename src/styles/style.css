@@ -150,8 +150,8 @@ main {
 #front #search {
   background-color: #45494C;
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
-  padding-top: 52px;
-  padding-bottom: 44px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
@@ -180,7 +180,7 @@ main {
 #front #search .search-field:after {
   content: "";
   position: absolute;
-  top: 56px;
+  top: 48px;
   right: 13px;
   border-top: 10px solid black;
   border-left: 7px solid transparent;
@@ -214,7 +214,7 @@ main {
 }
 #front #search .search-control {
   margin-top: 9px;
-  height: 60px;
+  height: 40px;
   border-radius: 5px;
   background-color: white;
   border: none;
@@ -250,7 +250,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 58px;
+  height: 40px;
   font-size: 20px;
   color: white;
   font-weight: 600;
@@ -266,11 +266,11 @@ main {
   }
 }
 #front #tab {
-  margin-top: 111px;
+  margin-top: 60px;
 }
 @media screen and (max-width: 768px) {
   #front #tab {
-    margin-top: 60px;
+    margin-top: 30px;
   }
 }
 #front #tab .tab-buttons {
@@ -289,12 +289,12 @@ main {
 #front #tab .tab-buttons__item {
   border: none;
   flex: 1;
-  height: 69px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
   background-color: #818181;
@@ -314,7 +314,7 @@ main {
   background: linear-gradient(to right, #3690D5, #1C4B6F);
 }
 #front #tab .tab-buttons__item img {
-  width: 25px;
+  width: 20px;
 }
 #front #tab .tab-info {
   margin-top: 30px;
@@ -337,9 +337,15 @@ main {
     font-size: 20px;
   }
 }
+#front #tab .tab-desc {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.6;
+}
 #front #shop {
-  margin-top: 99px;
-  padding-bottom: 200px;
+  margin-top: 60px;
+  padding-bottom: 120px;
 }
 @media screen and (max-width: 768px) {
   #front #shop {
@@ -367,7 +373,7 @@ main {
   height: 421px;
   margin-left: 9px;
   margin-right: 9px;
-  margin-bottom: 50px;
+  margin-bottom: 18px;
   background-image: url(../../public/card-bg.svg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -455,8 +461,9 @@ main {
   display: flex;
   align-items: center;
 }
-#front #shop .shop-card__x span {
+#front #shop .shop-card__x a {
   color: #333;
+  text-decoration: underline;
   font-weight: 400;
 }
 #front #shop .shop-card__icon {
@@ -493,6 +500,7 @@ main {
 #front #shop .shop-card__hp {
   margin-top: 10px;
   color: #333;
+  text-decoration: underline;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -580,7 +588,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1C4B6F;
   font-weight: bold;
   font-size: 16px;
   position: absolute;
@@ -601,24 +608,24 @@ main {
   margin-top: 1px;
 }
 #front #shop .shop-more {
-  margin-top: 150px;
+  margin-top: 80px;
 }
 @media screen and (max-width: 768px) {
   #front #shop .shop-more {
-    margin-top: 70px;
+    margin-top: 40px;
   }
 }
 #front #shop .shop-more__button {
   margin: 0 auto;
   width: 255px;
   display: flex;
-  height: 69px;
+  height: 50px;
   border-radius: 34.5px;
   background: linear-gradient(to right, #3690D5, #1C4B6F);
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   border-color: white;
   font-weight: bold;
   cursor: pointer;
@@ -807,8 +814,9 @@ single
   align-items: center;
   margin-top: 16px;
 }
-#single #shop .shop-card__x span {
+#single #shop .shop-card__x a {
   color: #333;
+  text-decoration: underline;
   font-weight: 400;
 }
 #single #shop .shop-card__icon {
@@ -858,6 +866,7 @@ single
 #single #shop .shop-card__hp {
   margin-top: 10px;
   color: #333;
+  text-decoration: underline;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -1064,5 +1073,59 @@ single
   font-size: 20px;
   font-weight: bold;
   color: brown;
+}
+
+#about .about {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+#about .about-container {
+  max-width: 890px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+#about .about h2 {
+  padding: 0.25em 0.5em;
+  color: black;
+  background: transparent;
+  border-left: solid 5px #1C4B6F;
+  margin-bottom: 30px;
+}
+#about .about p {
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: black;
+}
+#about .about a {
+  color: #333;
+  text-decoration: underline;
+}
+#about .about img {
+  display: block;
+  max-width: 500px;
+  height: auto;
+  margin: 30px auto;
+}
+#about .about ul {
+  margin-bottom: 30px;
+  list-style: none;
+}
+#about .about ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+#about .about ul li::before {
+  content: "";
+  display: block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1C4B6F;
+  position: absolute;
+  top: 8px;
+  left: 0;
 }
 /*# sourceMappingURL=style.css.map */

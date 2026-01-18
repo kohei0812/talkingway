@@ -298,6 +298,9 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             <p className="tab-note">現在時刻: {formatNowJa(now)}</p>
             <p className="tab-count">全 {filtered.length} 件</p>
           </div>
+          <p className="tab-desc">
+            営業中判定を含む掲載内容は実際と異なる場合があります。最新の情報は各公式情報をご確認ください。
+          </p>
         </div>
       </section>
       {/* 一覧 */}

@@ -13,7 +13,6 @@ export default async function Home() {
 
   return (
     <>
-     
       <main id="front">
         {/* hero */}
         <section id="hero">
