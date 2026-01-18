@@ -65,7 +65,8 @@ export default function AboutPage() {
           <Link href="https://x.com/Tea_B_FF14" target="_blank">
             @Tea_B_FF14
           </Link>
-          までお願いします。
+          までお願いします。<br />
+          無償・有志での運営のため、受け付けたご意見への返信・反映をご約束できないことをご容赦ください。
         </p>
         </div>
       </section>
