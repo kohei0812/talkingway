@@ -647,7 +647,7 @@ main {
   justify-content: center;
   color: white;
   font-size: 20px;
-  border-color: white;
+  border: none;
   font-weight: bold;
   cursor: pointer;
 }
