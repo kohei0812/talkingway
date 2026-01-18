@@ -5,6 +5,11 @@ body {
   font-family: var(--font-noto-sans-jp), system-ui, sans-serif;
 }
 
+@media screen and (min-width: 769px) {
+  .sp_only {
+    display: none !important;
+  }
+}
 /*----------------------------*/
 /*header */
 /*----------------------------*/
