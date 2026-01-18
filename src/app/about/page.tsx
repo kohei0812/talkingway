@@ -22,7 +22,7 @@ export default function AboutPage() {
         </p>
         <h2>{SITE_TITLE}って何？</h2>
         <p>「有料対話店ってどんなどころ？」「{SITE_TITLE}は何？」<br />
-          そんな疑問にお応えするSS漫画をご覧ください。
+          そんな疑問にお応えするSS漫画を<br className="sp_only" />ご覧ください。
         </p>
         <Image
           src="/manga01.jpg"
