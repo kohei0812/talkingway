@@ -251,9 +251,9 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
           </select>
         </div>
         <div className="search-field check">
-          <label className="search-control check">不定期を含める</label>
+          <label className="search-label">不定期を含める</label>
           <input
-            className="search-check"
+            className="search-control check"
             type="checkbox"
             name="agree"
             checked={includeIrregularInput}
