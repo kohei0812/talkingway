@@ -131,6 +131,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
   const [raceInput, setRaceInput] = useState("");
   const [dayInput, setDayInput] = useState("");
   const [nameInput, setNameInput] = useState("");
+  const [includeIrregularInput, setIncludeIrregularInput] = useState(false);
 
   // 検索ボタンを押した時に確定する値（実フィルタに使う）
   const [query, setQuery] = useState({
@@ -138,6 +139,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
     race: "",
     day: "",
     name: "",
+    includeIrregular: false,
   });
 
   // 検索条件またはタブが変更されたときに表示件数をリセット
@@ -171,8 +173,9 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       if (query.race && shopRace !== query.race) return false;
 
       if (query.day) {
-        const v = (shop[query.day] ?? "").toUpperCase();
-        if (v !== "TRUE") return false;
+        const dayMatch = (shop[query.day] ?? "").toUpperCase() === "TRUE";
+        const irregularMatch = query.includeIrregular && (shop["不定期"] ?? "").toUpperCase() === "TRUE";
+        if (!dayMatch && !irregularMatch) return false;
       }
 
       if (qName && !shopName.includes(qName)) return false;
@@ -192,6 +195,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
       race: raceInput,
       day: dayInput,
       name: nameInput,
+      includeIrregular: includeIrregularInput,
     });
   };
   return (
@@ -246,6 +250,15 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
+        <label className="search-check">
+          <input
+            type="checkbox"
+            name="agree"
+            checked={includeIrregularInput}
+            onChange={(e) => setIncludeIrregularInput(e.target.checked)}
+          />
+          不定期を含める
+        </label>
         <div className="search-field name">
           <label className="search-label">店名</label>
           <input
@@ -279,7 +292,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                 width={25}
                 height={24}
               />
-              全ての店舗
+              全ての対話店
             </button>
             <button
               type="button"
@@ -292,7 +305,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                 width={25}
                 height={23}
               />
-              営業中の店舗
+              営業中の対話店
             </button>
           </div>
           <div className="tab-info">
@@ -380,15 +393,15 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                       <span className="shop-card__server">{server}</span>
                     )}
                   </div>
-                   {xtag && (
-                      <div className="shop-card__tag">
-                        {xUrl ? (
-                          <Link target="_blank" href={xUrl}>{xtag}</Link>
-                        ) : (
-                          <span>{xtag}</span>
-                        )}
-                      </div>
-                    )}
+                  {xtag && (
+                    <div className="shop-card__tag">
+                      {xUrl ? (
+                        <Link target="_blank" href={xUrl}>{xtag}</Link>
+                      ) : (
+                        <span>{xtag}</span>
+                      )}
+                    </div>
+                  )}
                   <div className="shop-card__flex">
                     {race && (
                       <div className="shop-card__race">
