@@ -60,11 +60,11 @@ export default function AboutPage() {
             </li>
           </ul>
           <h2>参考リンク</h2>
-          <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください</p>
+          <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください。</p>
           <h2>スペシャルサンクス</h2>
-          <p>ヘッダーSSのハウジング制作→<Link href="https://x.com/HitoShizuku39" target="_blank">
+          <p>ヘッダーSSのハウジング作は<Link href="https://x.com/HitoShizuku39" target="_blank">
             ひとしずく💧@FFXIV垢
-          </Link>
+          </Link>さんに制作いただきました！🙇
           </p>
           <h2>お問い合わせ</h2>
           <p>
