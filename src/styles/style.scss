@@ -11,6 +11,7 @@ body {
         display: none !important;
     }
 }
+
 @media screen and (max-width:768px) {
     .pc_only {
         display: none !important;
@@ -108,7 +109,7 @@ main {
         position: relative;
 
         @media screen and (max-width:768px) {
-            padding-bottom:20px;
+            padding-bottom: 20px;
             height: auto;
         }
 
@@ -155,17 +156,19 @@ main {
 
             &-ttl {
                 position: absolute;
-                bottom: 100px;
-                right: 15px;
-                font-weight: 900;
                 max-width: 90%;
                 height: auto;
+                font-weight: 900;
+                position: absolute;
+                bottom: 50px;
+                right: 10px;
+
                 @media screen and (max-width:768px) {
                     position: relative;
                     margin-top: 10px;
                     right: auto;
                     bottom: auto;
-                    margin-left:10px;
+                    margin-left: 10px;
                 }
             }
         }
@@ -1295,9 +1298,11 @@ single
             margin-bottom: 30px;
             line-height: 1.6;
             color: black;
-            &.end{
+
+            &.end {
                 text-align: end;
             }
+
             @media screen and (max-width:768px) {
                 margin-bottom: 20px;
                 font-size: 14px;
