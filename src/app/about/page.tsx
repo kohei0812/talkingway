@@ -56,7 +56,7 @@ export default function AboutPage() {
             情報提供・不備・ご意見は
             <Link href="https://x.com/Talkingway_XIV?s=20" target="_blank">
               @Talkingway_XIV
-            </Link>へDMかスプレッドシートのご意見板に記入お願いします。
+            </Link>へDMかスプレッドシートにある投稿フォームに入力お願いします。
           </li>
         </ul>
         <h2>お問い合わせ</h2>
