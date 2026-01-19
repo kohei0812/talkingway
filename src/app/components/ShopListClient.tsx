@@ -258,6 +258,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             onChange={(e) => setIncludeIrregularInput(e.target.checked)}
           />
           不定期を含める
+
         </label>
         <div className="search-field name">
           <label className="search-label">店名</label>
@@ -326,7 +327,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
               const no = getShopNo(shop);
               const name = (shop["店名"] ?? "").trim();
               const status = shop["営業"] ?? "";
-              const dc = shop["DC"] ?? shop["dc"] ?? "";
+              const dc = getNormalizedDc(shop) ?? "";
               const server = shop["サーバー"] ?? "";
               const start = shop["開始"] ?? "";
               const end = shop["終了"] ?? "";
