@@ -62,7 +62,7 @@ export default function AboutPage() {
           <h2>参考リンク</h2>
           <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください。</p>
           <h2>スペシャルサンクス</h2>
-          <p>ヘッダーSSのハウジング作は<Link href="https://x.com/HitoShizuku39" target="_blank">
+          <p>ヘッダーSSのハウジングは<Link href="https://x.com/HitoShizuku39" target="_blank">
             ひとしずく💧@FFXIV垢
           </Link>さんに制作いただきました！🙇
           </p>
