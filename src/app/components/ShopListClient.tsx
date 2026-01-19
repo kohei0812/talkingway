@@ -250,8 +250,8 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             ))}
           </select>
         </div>
-        <div className="search-field">
-          <label className="search-label">不定期を含める</label>
+        <div className="search-field check">
+          <label className="search-control check">不定期を含める</label>
           <input
             className="search-check"
             type="checkbox"

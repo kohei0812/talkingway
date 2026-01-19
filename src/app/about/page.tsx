@@ -68,6 +68,11 @@ export default function AboutPage() {
           までお願いします。<br />
           無償・有志での運営のため、受け付けたご意見への返信・反映をご約束できないことをご容赦ください。
         </p>
+         <h2>参考リンク</h2>
+         <p>カフェ・Barを含むお店一覧はコチラ↓の方のサイトをご参照ください</p>
+          <Link href="https://www.14-store-log.com/" target="_blank">
+           14すとあログ
+          </Link>
         </div>
       </section>
     </main>
