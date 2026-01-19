@@ -201,6 +201,9 @@ main {
     top: 49px;
   }
 }
+#front #search .search-field.check:after {
+  display: none;
+}
 #front #search .search-field.name {
   width: 537px;
 }
@@ -216,6 +219,11 @@ main {
   font-size: 16px;
   color: white;
   font-weight: 500;
+}
+#front #search .search-label.check {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
 }
 @media screen and (max-width: 768px) {
   #front #search .search-label {
@@ -238,6 +246,12 @@ main {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
+}
+#front #search .search-control.check {
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  margin-right: 10px;
 }
 @media screen and (max-width: 768px) {
   #front #search .search-control {

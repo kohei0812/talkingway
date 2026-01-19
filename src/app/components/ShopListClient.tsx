@@ -251,7 +251,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
           </select>
         </div>
         <div className="search-field check">
-          <label className="search-label">不定期を含める</label>
+          <label className="search-label check">
           <input
             className="search-control check"
             type="checkbox"
@@ -259,6 +259,8 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
             checked={includeIrregularInput}
             onChange={(e) => setIncludeIrregularInput(e.target.checked)}
           />
+          不定期を含める
+          </label>
         </div>
         <div className="search-field name">
           <label className="search-label">店名</label>

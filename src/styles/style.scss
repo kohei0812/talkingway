@@ -209,7 +209,11 @@ main {
                         top: 49px;
                     }
                 }
-
+                &.check{
+                    &:after{
+                        display: none;
+                    }
+                }
                 &.name {
                     width: 537px;
 
@@ -227,7 +231,11 @@ main {
                 font-size: 16px;
                 color: white;
                 font-weight: 500;
-
+                &.check{
+                    margin-top:16px;
+                    display:flex;
+                    align-items: center;
+                }
                 @media screen and (max-width:768px) {
                     font-size: 14px;
                 }
@@ -247,7 +255,12 @@ main {
                 padding: 10px;
                 cursor: pointer;
                 font-weight: bold;
-                
+                &.check{
+                    width: 20px;
+                    height: 20px;
+                    margin-top:0;
+                    margin-right:10px;
+                }
                 @media screen and (max-width:768px) {
                     height: 40px;
                     font-size: 14px;
