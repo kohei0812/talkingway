@@ -7,25 +7,26 @@ type Shop = Record<string, string>;
 
 const dayKeys = ["月", "火", "水", "木", "金", "土", "日", "不定期"] as const;
 
-/** shop の DC が単一値なら返す / 複数値なら null */
-function getSingleDc(shop: Shop): string | null {
+/** shop の DC を正規化して返す（改行・スペース・カンマは/に変換） */
+function getNormalizedDc(shop: Shop): string | null {
   const raw = (shop["dc"] ?? shop["DC"] ?? "") as string;
 
-  const normalized = (raw ?? "")
+  const v = (raw ?? "")
     .replace(/\r\n/g, "\n")
-    .replace(/[\n\r\t]/g, " ")
+    .replace(/[\n\r]/g, "/")
+    .replace(/[\t]/g, " ")
     .replace(/　/g, " ")
     .trim();
 
-  if (!normalized || normalized === "-" || normalized === "なし" || normalized === "非公開") return null;
+  if (!v || v === "-" || v === "なし" || v === "非公開") return null;
 
-  const tokens = normalized.split(/[ ,/]+/).filter(Boolean);
-  if (tokens.length !== 1) return null;
+  // スペース・カンマを/に統一して整形
+  const normalized = v
+    .split(/[ ,/]+/)
+    .filter((t) => t && t !== "-" && t !== "なし" && t !== "非公開")
+    .join("/");
 
-  const token = tokens[0].trim();
-  if (!token || token === "-" || token === "なし" || token === "非公開") return null;
-
-  return token;
+  return normalized || null;
 }
 
 // "HH:MM" -> minutes
@@ -158,7 +159,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
     const qName = query.name.trim().toLowerCase();
 
     return tabbedItems.filter((shop) => {
-      const shopDcSingle = getSingleDc(shop);
+      const shopDcSingle = getNormalizedDc(shop);
       const shopRace = (shop["種族・性別"] ?? "").trim();
       const shopName = (shop["店名"] ?? "").trim().toLowerCase();
 

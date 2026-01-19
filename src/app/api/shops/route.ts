@@ -9,25 +9,28 @@ function uniqSorted(values: string[]) {
   ).sort((a, b) => a.localeCompare(b, "ja"));
 }
 
-function extractSingleDcOptions(rawValues: string[]) {
+function extractDcOptions(rawValues: string[]) {
   const out = new Set<string>();
 
   for (const raw of rawValues) {
     const v = (raw ?? "")
       .replace(/\r\n/g, "\n")
-      .replace(/[\n\r\t]/g, " ")
+      .replace(/[\n\r]/g, "/")
+      .replace(/[\t]/g, " ")
       .replace(/　/g, " ")
       .trim();
 
     if (!v || v === "-" || v === "なし" || v === "非公開") continue;
 
-    const tokens = v.split(/[ ,/]+/).filter(Boolean);
-    if (tokens.length !== 1) continue; // ←複数値は除外
+    // スペース・カンマを/に統一して整形
+    const normalized = v
+      .split(/[ ,/]+/)
+      .filter((t) => t && t !== "-" && t !== "なし" && t !== "非公開")
+      .join("/");
 
-    const token = tokens[0].trim();
-    if (!token || token === "-" || token === "なし" || token === "非公開") continue;
+    if (!normalized) continue;
 
-    out.add(token);
+    out.add(normalized);
   }
 
   return Array.from(out).sort((a, b) => a.localeCompare(b, "ja"));
@@ -37,7 +40,7 @@ export async function GET() {
   const rows = await fetchSheetRowsRaw();
   const { items } = rowsToShopObjects(rows);
 
-  const dcs = extractSingleDcOptions(items.map((x) => (x["dc"] ?? x["DC"] ?? "") as string));
+  const dcs = extractDcOptions(items.map((x) => (x["dc"] ?? x["DC"] ?? "") as string));
   const servers = uniqSorted(items.map((x) => (x["サーバー"] ?? "") as string));
   const races = uniqSorted(items.map((x) => (x["種族・性別"] ?? "") as string));
 
