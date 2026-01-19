@@ -24,7 +24,7 @@ export default async function Home() {
           <Image
             className="hero-ttl"
             src="/hero-eng.png"
-            alt="漫画"
+            alt="Talkingway's RP conversation venue Navi"
             width={1041}
             height={158}
           />
