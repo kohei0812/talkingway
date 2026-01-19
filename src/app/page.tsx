@@ -18,7 +18,8 @@ export default async function Home() {
         {/* hero */}
         <section id="hero">
           <div className="hero-container">
-            <p className="hero-lead"><span>トーキングウェイの</span><span>有料対話店Navi</span></p>
+            <p className="hero-lead"><span>トーキングウェイの</span><br />
+            <span>有料対話店Navi</span></p>
           </div>
           <p className="hero-ttl">Final Fantasy XIV</p>
         </section>
