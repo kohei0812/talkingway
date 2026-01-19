@@ -42,9 +42,9 @@ export default function AboutPage() {
             width={860}
             height={1200}
           />
-          <p>サイトデザイン&漫画制作：
+          <p className="end">サイトデザイン&漫画制作：
              <Link href="https://x.com/taka_benkyou" target="_blank">
-                髙橋のり子（旧タカノリ）｜漫画×LPデザイナー
+                @taka_benkyou
               </Link>
           </p>
           <h2>掲載情報について</h2>
@@ -68,7 +68,7 @@ export default function AboutPage() {
           <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください。</p>
           <h2>スペシャルサンクス</h2>
           <p>ヘッダーSSのハウジングは<Link href="https://x.com/HitoShizuku39" target="_blank">
-            ひとしずく💧@FFXIV垢
+            @HitoShizuku39
           </Link>さんに制作いただきました！🙇
           </p>
           <h2>お問い合わせ</h2>

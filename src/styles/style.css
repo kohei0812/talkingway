@@ -1148,6 +1148,9 @@ single
   line-height: 1.6;
   color: black;
 }
+#about .about p.end {
+  text-align: end;
+}
 @media screen and (max-width: 768px) {
   #about .about p {
     margin-bottom: 20px;
