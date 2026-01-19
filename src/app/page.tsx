@@ -26,7 +26,7 @@ export default async function Home() {
             src="/hero-eng.png"
             alt="漫画"
             width={1041}
-            height={196}
+            height={158}
           />
           {/* <p className="hero-ttl">Final Fantasy XIV</p> */}
         </section>
