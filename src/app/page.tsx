@@ -21,7 +21,7 @@ export default async function Home() {
             <p className="hero-lead"><span>トーキングウェイの</span><br />
             <span>有料対話店Navi</span></p>
           </div>
-          <p className="hero-ttl">Final Fantasy XIV</p>
+          {/* <p className="hero-ttl">Final Fantasy XIV</p> */}
         </section>
         {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
         <ShopListClient items={topItems} />
