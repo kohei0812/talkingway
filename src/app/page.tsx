@@ -25,8 +25,8 @@ export default async function Home() {
             className="hero-ttl"
             src="/hero-eng.png"
             alt="Talkingway's RP conversation venue Navi"
-            width={1041}
-            height={158}
+            width={821}
+            height={229}
           />
           {/* <p className="hero-ttl">Final Fantasy XIV</p> */}
         </section>

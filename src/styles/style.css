@@ -10,6 +10,11 @@ body {
     display: none !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .pc_only {
+    display: none !important;
+  }
+}
 /*----------------------------*/
 /*header */
 /*----------------------------*/
@@ -136,7 +141,7 @@ main {
 }
 #front #hero .hero-ttl {
   position: absolute;
-  bottom: 30px;
+  bottom: 100px;
   right: 15px;
   font-weight: 900;
   max-width: 90%;
