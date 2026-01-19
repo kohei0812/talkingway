@@ -131,7 +131,7 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
                       width={15}
                       height={11}
                     />
-                    営業中
+                    営業時間中
                   </span> : null}
                 </div>
               </div>

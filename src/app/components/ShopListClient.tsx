@@ -380,7 +380,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                         width={15}
                         height={11}
                       />
-                      営業中
+                      営業時間中
                     </span> : null}
                   </div>
                   <h2 className="shop-card__title">
