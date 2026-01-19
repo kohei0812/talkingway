@@ -42,6 +42,11 @@ export default function AboutPage() {
             width={860}
             height={1200}
           />
+          <p>サイトデザイン&漫画制作：
+             <Link href="https://x.com/taka_benkyou" target="_blank">
+                髙橋のり子（旧タカノリ）｜漫画×LPデザイナー
+              </Link>
+          </p>
           <h2>掲載情報について</h2>
           <ul>
             <li>
