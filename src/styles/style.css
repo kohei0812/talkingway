@@ -423,7 +423,7 @@ main {
   position: absolute;
   top: 10px;
   left: 15px;
-  width: 80px;
+  width: 100px;
   height: 25px;
   display: flex;
   align-items: center;
@@ -787,7 +787,7 @@ single
   }
 }
 #single #shop .shop-card__openLabel {
-  width: 100px;
+  width: 120px;
   height: 30px;
   display: flex;
   align-items: center;

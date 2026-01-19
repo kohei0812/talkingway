@@ -308,7 +308,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                 width={25}
                 height={23}
               />
-              営業中の対話店
+              営業時間の対話店
             </button>
           </div>
           <div className="tab-info">
@@ -382,7 +382,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
                         width={15}
                         height={11}
                       />
-                      営業時間中
+                      営業時間
                     </span> : null}
                   </div>
                   <h2 className="shop-card__title">
