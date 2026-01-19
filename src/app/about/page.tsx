@@ -59,6 +59,13 @@ export default function AboutPage() {
               </Link>へDMかスプレッドシートにある投稿フォームに入力お願いします。
             </li>
           </ul>
+          <h2>参考リンク</h2>
+          <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください</p>
+          <h2>スペシャルサンクス</h2>
+          <p>ヘッダーSSのハウジング制作→<Link href="https://x.com/HitoShizuku39" target="_blank">
+            ひとしずく💧@FFXIV垢
+          </Link>
+          </p>
           <h2>お問い合わせ</h2>
           <p>
             サイトの不具合・お問い合わせ・Web制作のご依頼は
@@ -67,13 +74,6 @@ export default function AboutPage() {
             </Link>
             までお願いします。<br />
             無償・有志での運営のため、受け付けたご意見への返信・反映をご約束できないことをご容赦ください。
-          </p>
-          <h2>参考リンク</h2>
-          <p>カフェ・Barを含むお店一覧は<Link href="https://www.14-store-log.com/" target="_blank">14すとあログ</Link>をご参照ください</p>
-          <h2>スペシャルサンクス</h2>
-          <p>ヘッダーSSのハウジング制作→<Link href="https://x.com/HitoShizuku39" target="_blank">
-            ひとしずく💧@FFXIV垢
-          </Link>
           </p>
         </div>
       </section>
