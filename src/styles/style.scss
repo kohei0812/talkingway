@@ -263,6 +263,7 @@ main {
                 }
 
                 &.check {
+                    cursor: pointer;
                     &:after {
                         display: none;
                     }

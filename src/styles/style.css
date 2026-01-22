@@ -247,6 +247,9 @@ main .totop::before {
     top: 49px;
   }
 }
+#front #search .search-field.check {
+  cursor: pointer;
+}
 #front #search .search-field.check:after {
   display: none;
 }
