@@ -43,9 +43,9 @@ export default function AboutPage() {
             height={1200}
           />
           <p className="end">サイトデザイン&漫画制作：
-             <Link href="https://x.com/taka_benkyou" target="_blank">
-                @taka_benkyou
-              </Link>
+            <Link href="https://x.com/taka_benkyou" target="_blank">
+              @taka_benkyou
+            </Link>
           </p>
           <h2>掲載情報について</h2>
           <ul>
@@ -70,6 +70,11 @@ export default function AboutPage() {
           <p>ヘッダーSSのハウジングは<Link href="https://x.com/HitoShizuku39" target="_blank">
             @HitoShizuku39
           </Link>さんに制作いただきました！🙇
+          </p>
+          <p>ロゴ・ローディングアニメーションは
+            <Link href="https://tokidokiame.com/galleryhouse/" target="_blank">
+              フリー素材サイトギャラリーハウス
+            </Link>様より利用させていただいています。
           </p>
           <h2>お問い合わせ</h2>
           <p>
