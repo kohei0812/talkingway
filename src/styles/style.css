@@ -729,7 +729,7 @@ page-header
 ----------------------------*/
 #page-header {
   height: 275px;
-  background-image: url(../../public/hero-bg.jpg);
+  background-image: url(../../public/hero-bg.webp);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
