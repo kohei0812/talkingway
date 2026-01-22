@@ -8,6 +8,13 @@ export const revalidate = false; // 再生成しない（完全固定）
 export default function AboutPage() {
   return (
     <main id="about">
+      <Image
+        className="main-bg"
+        src="/main-bg.png"
+        alt="背景"
+        width={1175}
+        height={453}
+      />
       {/* page-header */}
       <section id="page-header">
         <div className="hero-container">
@@ -87,6 +94,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+      <Link className="totop" href="/">トップへ戻る</Link>
     </main>
   );
 }

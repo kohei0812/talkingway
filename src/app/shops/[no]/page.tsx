@@ -111,6 +111,13 @@ export default function ShopDetailPage({ params }: { params: { no: string } }) {
   return (
     <>
       <main id="single">
+        <Image
+          className="main-bg"
+          src="/main-bg.png"
+          alt="背景"
+          width={1175}
+          height={453}
+        />
         {/* page-header */}
         <section id="page-header">
           <div className="hero-container">

@@ -15,6 +15,13 @@ export default async function Home() {
   return (
     <>
       <main id="front">
+        <Image
+          className="main-bg"
+          src="/main-bg.png"
+          alt="背景"
+          width={1175}
+          height={453}
+        />
         {/* hero */}
         <section id="hero">
           <div className="hero-container">

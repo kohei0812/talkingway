@@ -89,6 +89,55 @@ body {
 
 main {
     background-color: #D1C9D0;
+    position: relative;
+
+    &>* {
+        position: relative;
+    }
+
+    .main-bg {
+        max-width: 100%;
+        display: block;
+        position: absolute;
+        width: 1175px;
+        height: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .totop {
+        margin: 60px auto 0;
+        width: 255px;
+        display: flex;
+        height: 70px;
+        font-size: 20px;
+        border-radius: 34.5px;
+        background: linear-gradient(to right, #3690D5, #1C4B6F);
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-color: white;
+        font-weight: bold;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-top: 1px solid white;
+            border-left: 1px solid white;
+            transform: rotate(-45deg);
+            margin-right: 20px;
+        }
+
+        @media screen and (max-width:768px) {
+            margin-top: 30px;
+            font-size: 16px;
+            height: 50px;
+        }
+    }
 }
 
 /*----------------------------*/
@@ -1123,39 +1172,6 @@ single
         }
 
     }
-
-    .totop {
-        margin: 60px auto 0;
-        width: 255px;
-        display: flex;
-        height: 70px;
-        font-size: 20px;
-        border-radius: 34.5px;
-        background: linear-gradient(to right, #3690D5, #1C4B6F);
-        align-items: center;
-        justify-content: center;
-        color: white;
-        border-color: white;
-        font-weight: bold;
-        cursor: pointer;
-
-        &::before {
-            content: "";
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-top: 1px solid white;
-            border-left: 1px solid white;
-            transform: rotate(-45deg);
-            margin-right: 20px;
-        }
-
-        @media screen and (max-width:768px) {
-            margin-top: 30px;
-            font-size: 16px;
-            height: 50px;
-        }
-    }
 }
 
 /*---------------------
@@ -1253,11 +1269,18 @@ single
 }
 
 #about {
+    padding-bottom: 100px;
 
+    @media screen and (max-width:768px) {
+        padding-top: 50px;
+    }
 
     .about {
         padding-top: 100px;
-        padding-bottom: 100px;
+
+        @media screen and (max-width:768px) {
+            padding-top: 50px;
+        }
 
         &-container {
             max-width: 890px;
