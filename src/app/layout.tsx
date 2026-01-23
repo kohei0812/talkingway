@@ -4,7 +4,7 @@ import "./globals.css";
 import "@/styles/style.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@/lib/constants";
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -13,8 +13,43 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: SITE_TITLE,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
+  },
   description: SITE_DESCRIPTION,
+  keywords: ["FF14", "FFXIV", "ファイナルファンタジー14", "有料対話店", "RP", "ロールプレイ", "カフェ", "トーキングウェイ"],
+  authors: [{ name: "トーキングウェイ" }],
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: SITE_URL,
+    siteName: SITE_TITLE,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: SITE_TITLE,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/ogp.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({

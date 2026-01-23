@@ -1,9 +1,21 @@
 // src/app/about/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { SITE_TITLE } from "@/lib/constants";
+import { SITE_TITLE, SITE_URL } from "@/lib/constants";
+
 export const dynamic = "force-static"; // これで静的化（SSRに寄せない）
 export const revalidate = false; // 再生成しない（完全固定）
+
+export const metadata: Metadata = {
+  title: "このサイトについて",
+  description: `${SITE_TITLE}の説明ページです。有料対話店とは何か、サイトの使い方、掲載情報についてご紹介します。`,
+  openGraph: {
+    title: `このサイトについて | ${SITE_TITLE}`,
+    description: `${SITE_TITLE}の説明ページです。有料対話店とは何か、サイトの使い方、掲載情報についてご紹介します。`,
+    url: `${SITE_URL}/about`,
+  },
+};
 
 export default function AboutPage() {
   return (
