@@ -783,14 +783,14 @@ page-header
 single
 ----------------------------*/
 #single {
-  padding-bottom: 252px;
+  padding-bottom: 100px;
   /*----------------------------
   shop 
   ----------------------------*/
 }
 @media screen and (max-width: 768px) {
   #single {
-    padding-bottom: 100px;
+    padding-bottom: 50px;
   }
 }
 #single #shop {
