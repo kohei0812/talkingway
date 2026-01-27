@@ -49,7 +49,7 @@ export default function Header() {
                     <h1 className="header-ttl">
                         <Image
                             className="hero-ttl"
-                            src="/talkingway.png"
+                            src="/talkingway.PNG"
                             alt="トーキングウェイのアイコン"
                             width={617}
                             height={618}
