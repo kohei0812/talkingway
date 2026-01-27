@@ -61,7 +61,7 @@ export default function AboutPage() {
             width={860}
             height={1200}
           />
-          <p className="end">サイトデザイン&漫画制作：
+          <p className="end">サイトデザイン&アイコン・漫画制作：
             <Link href="https://x.com/taka_benkyou" target="_blank">
               @taka_benkyou
             </Link>
@@ -90,7 +90,7 @@ export default function AboutPage() {
             @HitoShizuku39
           </Link>さんに制作いただきました！🙇
           </p>
-          <p>ロゴ・ローディングアニメーションは
+          <p>ファビコン・ローディングアニメーションは
             <Link href="https://tokidokiame.com/galleryhouse/" target="_blank">
               フリー素材サイトギャラリーハウス
             </Link>様より利用させていただいています。
