@@ -44,7 +44,7 @@ export default function AboutPage() {
             そんな疑問にお応えするSS漫画を<br className="sp_only" />ご覧ください。
           </p>
           <Image
-            src="/manga01.jpg"
+            src="/manga01.webp"
             alt="漫画"
             width={860}
             height={1200}
