@@ -147,7 +147,7 @@ main {
         animation: floating-y 1.8s ease-in-out infinite alternate-reverse;
         transition: all .6s ease;
         &.active{
-            bottom: 200px;
+            bottom: 160px;
         }
          @media screen and (max-width:768px) {
             display:flex;
