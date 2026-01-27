@@ -40,7 +40,7 @@ export default function AboutLinkWithScroll() {
       />
       <Image
         className="about-link__icon"
-        src="/talkingway.png"
+        src="/talkingway.PNG"
         alt="トーキングウェイのアイコン"
         width={617}
         height={618}
