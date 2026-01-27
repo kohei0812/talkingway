@@ -1,10 +1,10 @@
 // src/app/page.tsx
 import { fetchSheetRowsRaw } from "@/lib/sheets";
 import { rowsToShopObjects } from "@/lib/shops";
-import { SITE_TITLE } from "@/lib/constants";
 import ShopListClient from "@/app/components/ShopListClient";
-import Link from "next/link";
+import AboutLinkWithScroll from "@/app/components/AboutLinkWithScroll";
 import Image from "next/image";
+
 export default async function Home() {
   const rows = await fetchSheetRowsRaw();
   const { items } = rowsToShopObjects(rows);
@@ -35,13 +35,11 @@ export default async function Home() {
             width={821}
             height={229}
           />
-          {/* <p className="hero-ttl">Final Fantasy XIV</p> */}
         </section>
         {/* 検索UI + 一覧 + 結果件数（Client側で動かす） */}
         <ShopListClient items={topItems} />
-        <Link href="/about">このサイトについて</Link>
+        <AboutLinkWithScroll />
       </main>
-
     </>
   );
 }

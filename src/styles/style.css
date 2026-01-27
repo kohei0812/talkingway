@@ -123,6 +123,64 @@ main .totop::before {
     height: 50px;
   }
 }
+main .about-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  animation: floating-y 1.8s ease-in-out infinite alternate-reverse;
+  transition: all 0.6s ease;
+}
+main .about-link.active {
+  bottom: 200px;
+}
+@media screen and (max-width: 768px) {
+  main .about-link {
+    display: flex;
+    justify-content: flex-end;
+  }
+  main .about-link.active {
+    bottom: 100px;
+  }
+}
+@-webkit-keyframes floating-y {
+  0% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(5%);
+  }
+}
+@keyframes floating-y {
+  0% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(5%);
+  }
+}
+main .about-link__babble {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  width: 90%;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  main .about-link__babble {
+    left: 35px;
+  }
+}
+main .about-link__icon {
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  main .about-link__icon {
+    width: 60%;
+  }
+}
 
 /*----------------------------*/
 /*front */
@@ -391,6 +449,27 @@ main .totop::before {
 }
 #front #tab .tab-buttons__item img {
   width: 20px;
+}
+#front #tab .tab-check {
+  margin-top: 20px;
+}
+#front #tab .tab-check__label {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #1C4B6F;
+  font-weight: 500;
+}
+#front #tab .tab-check__input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
 }
 #front #tab .tab-info {
   margin-top: 30px;

@@ -37,26 +37,27 @@ export default function Header() {
 
     return (
         <>
-        <div
-            id="totop"
-            className={`totop eng ${isActive ? "active" : ""}`}
-            onClick={handleScrollToTop}
-        >
-            TOP
-        </div>
-        <header id="header" className="header">
-            <Link href="/" className="header-logo">
-                <h1 className="header-ttl">
-                    <Image
-                        src="/logo.png"
-                        alt={SITE_TITLE}
-                        width={56}
-                        height={56}
-                    />
-                    {SITE_TITLE}
-                </h1>
-            </Link>
-        </header>
+            <div
+                id="totop"
+                className={`totop eng ${isActive ? "active" : ""}`}
+                onClick={handleScrollToTop}
+            >
+                TOP
+            </div>
+            <header id="header" className="header">
+                <Link href="/" className="header-logo">
+                    <h1 className="header-ttl">
+                        <Image
+                            className="hero-ttl"
+                            src="/talkingway.png"
+                            alt="トーキングウェイのアイコン"
+                            width={617}
+                            height={618}
+                        />
+                        {SITE_TITLE}
+                    </h1>
+                </Link>
+            </header>
         </>
     );
 

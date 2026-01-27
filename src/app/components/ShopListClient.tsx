@@ -55,14 +55,8 @@ function getTodayKeyJa(d: Date): (typeof dayKeys)[number] {
   return map[d.getDay()] ?? "日";
 }
 
-function isOpenNow(shop: Shop, now: Date): boolean {
-  const todayKey = getTodayKeyJa(now);
-
-  const todayFlag = (shop[todayKey] ?? "").toUpperCase() === "TRUE";
-
-  // 曜日が当てはまらないなら営業中扱いにしない（不定期は営業中に含めない）
-  if (!todayFlag) return false;
-
+/** 営業時間のみをチェック（曜日は無視） */
+function isWithinBusinessHours(shop: Shop, now: Date): boolean {
   const startRaw = shop["開始"] ?? "";
   const endRaw = shop["終了"] ?? "";
   const start = parseTimeToMinutes(startRaw);
@@ -83,8 +77,19 @@ function isOpenNow(shop: Shop, now: Date): boolean {
     return nowMinutes >= start || nowMinutes < end;
   }
 
-  // start === end は解釈不能（必要なら 24h 扱いに変えられる）
+  // start === end は解釈不能
   return false;
+}
+
+function isOpenNow(shop: Shop, now: Date): boolean {
+  const todayKey = getTodayKeyJa(now);
+
+  const todayFlag = (shop[todayKey] ?? "").toUpperCase() === "TRUE";
+
+  // 曜日が当てはまらないなら営業中扱いにしない（不定期は営業中に含めない）
+  if (!todayFlag) return false;
+
+  return isWithinBusinessHours(shop, now);
 }
 
 function formatNowJa(d: Date) {
@@ -126,6 +131,9 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
   // タブ
   const [tab, setTab] = useState<"all" | "open">("all");
 
+  // タブ用「不定期を含める」チェック
+  const [includeIrregularTab, setIncludeIrregularTab] = useState(false);
+
   // 入力中の値（フォームの見た目）
   const [dcInput, setDcInput] = useState("");
   const [raceInput, setRaceInput] = useState("");
@@ -145,7 +153,7 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
   // 検索条件またはタブが変更されたときに表示件数をリセット
   useEffect(() => {
     setDisplayCount(20);
-  }, [query, tab]);
+  }, [query, tab, includeIrregularTab]);
 
   // セレクト候補（APIから取得）
   const { dcs, races, days } = options;
@@ -153,8 +161,16 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
   // タブで母集団を切り替え
   const tabbedItems = useMemo(() => {
     if (tab === "all") return baseItems;
-    return baseItems.filter((shop) => isOpenNow(shop, now));
-  }, [baseItems, tab, now]);
+    return baseItems.filter((shop) => {
+      // 営業中の店舗
+      if (isOpenNow(shop, now)) return true;
+      // 「不定期を含める」がチェックされている場合、不定期かつ営業時間内の店舗も含める
+      if (includeIrregularTab && (shop["不定期"] ?? "").toUpperCase() === "TRUE") {
+        return isWithinBusinessHours(shop, now);
+      }
+      return false;
+    });
+  }, [baseItems, tab, now, includeIrregularTab]);
 
   // フィルタ結果（タブ適用後に検索条件を適用）
   const filtered = useMemo(() => {
@@ -310,6 +326,17 @@ export default function ShopListClient({ items }: { items: Shop[] }) {
               />
               営業時間の対話店
             </button>
+          </div>
+          <div className="tab-check">
+            <label className="tab-check__label">
+              <input
+                className="tab-check__input"
+                type="checkbox"
+                checked={includeIrregularTab}
+                onChange={(e) => setIncludeIrregularTab(e.target.checked)}
+              />
+              不定期を含める
+            </label>
           </div>
           <div className="tab-info">
             <p className="tab-note">現在時刻: {formatNowJa(now)}</p>

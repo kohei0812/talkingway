@@ -138,6 +138,54 @@ main {
             height: 50px;
         }
     }
+
+    .about-link {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 200px;
+        animation: floating-y 1.8s ease-in-out infinite alternate-reverse;
+        transition: all .6s ease;
+        &.active{
+            bottom: 200px;
+        }
+         @media screen and (max-width:768px) {
+            display:flex;
+            justify-content: flex-end;
+             &.active{
+            bottom: 100px;
+        }
+         }
+        @keyframes floating-y {
+            0% {
+                transform: translateY(-5%);
+            }
+
+            100% {
+                transform: translateY(5%);
+            }
+        }
+
+        &__babble {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(-100%);
+            width: 90%;
+            height: auto;
+              @media screen and (max-width:768px) {
+                left: 35px;
+              }
+        }
+
+        &__icon {
+            width: 100%;
+            height: auto;
+             @media screen and (max-width:768px) {
+                width: 60%;
+             }
+        }
+    }
 }
 
 /*----------------------------*/
@@ -264,6 +312,7 @@ main {
 
                 &.check {
                     cursor: pointer;
+
                     &:after {
                         display: none;
                     }
@@ -417,6 +466,30 @@ main {
                     img {
                         width: 20px;
                     }
+                }
+            }
+
+            &-check {
+                margin-top: 20px;
+
+                &__label {
+                    cursor: pointer;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    color: #1C4B6F;
+                    font-weight: 500;
+                }
+
+                &__input {
+                    width: 20px;
+                    height: 20px;
+                    margin-top:2px;
+                    margin-right:10px;
+                    border-radius: 5px;
+                    background-color: white;
+                    border: none;
                 }
             }
 
