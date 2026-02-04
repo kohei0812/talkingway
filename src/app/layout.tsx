@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import {Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import "@/styles/style.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
+import Script from 'next/script';
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400","500","600", "700","900"],
+  weight: ["400", "500", "600", "700", "900"],
   display: "swap",
 });
 
@@ -60,9 +61,21 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.className}`}>
-         <Header />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-92K5W7CY9H"
+          strategy="afterInteractive"
+        />
+        <Script id="ga" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-92K5W7CY9H');
+          `}
+        </Script>
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
